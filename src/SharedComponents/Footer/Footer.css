@@ -1,0 +1,449 @@
+/* Footer Container */
+.footer-container {
+    background: linear-gradient(135deg, #213360 0%, #1a2951 100%);
+    color: #ffffff;
+    width: 100%;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #21CDC0, transparent);
+}
+
+/* Main Content Area */
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 2rem;
+    padding: 3rem 2rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Individual Footer Sections */
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Hospital Info Section */
+.footer-info {
+    padding-right: 1rem;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo-container {
+    flex-shrink: 0;
+    padding: 0.5rem;
+    /* background: rgba(255, 255, 255, 0.1); */
+    /* border-radius: 50%; */
+    /* backdrop-filter: blur(10px); */
+}
+
+.footer-logo {
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.footer-hospital-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    /* background: linear-gradient(45deg, #ffffff, #21CDC0); */
+    background: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: justify;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-cta {
+    margin-top: 1rem;
+}
+
+.appointment-btn {
+    background: linear-gradient(45deg, #21CDC0, #1bb3a6) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 25px !important;
+    text-transform: none !important;
+    box-shadow: 0 4px 15px rgba(33, 205, 192, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.appointment-btn:hover {
+    background: linear-gradient(45deg, #1bb3a6, #21CDC0) !important;
+    box-shadow: 0 6px 20px rgba(33, 205, 192, 0.4) !important;
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 0.85rem;
+    transition: transform 0.3s ease;
+}
+
+.appointment-btn:hover .btn-icon {
+    transform: translateX(3px);
+}
+
+/* Section Titles */
+.footer-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: #21CDC0;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: #21CDC0;
+    border-radius: 1px;
+}
+
+/* Footer Lists */
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-list-item {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.25rem 0;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.footer-list-item::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+.footer-list-item:hover {
+    color: #21CDC0;
+    transform: translateX(5px);
+}
+
+.footer-list-item:hover::before {
+    transform: translateX(3px);
+}
+
+/* Link Buttons */
+.footer-link-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+    transition: color 0.3s ease;
+}
+
+.footer-link-btn:hover {
+    color: #21CDC0;
+}
+
+/* Contact Section */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-icon {
+    color: #21CDC0;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* Map Container */
+.map-container {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.map-container:hover {
+    transform: scale(1.02);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 0;
+}
+
+.footer-bottom-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-bottom-link {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0;
+}
+
+.footer-bottom-link:hover {
+    color: #21CDC0;
+}
+
+/* Responsive Design */
+
+/* Large Desktop */
+@media (max-width: 1400px) {
+    .footer-content {
+        grid-template-columns: 2fr 1fr 1fr 1.8fr;
+        padding: 2.5rem 1.5rem 2rem;
+    }
+}
+
+/* Desktop/Laptop */
+@media (max-width: 1200px) {
+    .footer-content {
+        grid-template-columns: 1.8fr 1fr 1fr 1.5fr;
+        gap: 1.5rem;
+    }
+    
+    .footer-hospital-name {
+        font-size: 1.6rem;
+    }
+    
+    .footer-logo {
+        height: 50px;
+        width: 50px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+    
+    .footer-info {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding-right: 0;
+    }
+    
+    .footer-brand {
+        justify-content: center;
+    }
+    
+    .footer-description {
+        text-align: center;
+    }
+    
+    .footer-hospital-name {
+        font-size: 1.5rem;
+    }
+    
+    .map-container iframe {
+        height: 150px;
+    }
+    
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .footer-bottom-links {
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.5rem 1rem;
+    }
+    
+    .footer-brand {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .footer-hospital-name {
+        font-size: 1.4rem;
+    }
+    
+    .footer-logo {
+        height: 40px;
+        width: 40px;
+    }
+    
+    .footer-description {
+        font-size: 0.9rem;
+    }
+    
+    .appointment-btn {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    
+    .footer-section-title {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    
+    .footer-section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .footer-list {
+        align-items: center;
+    }
+    
+    .footer-list-item {
+        text-align: center;
+        padding-left: 0;
+    }
+    
+    .footer-list-item::before {
+        display: none;
+    }
+    
+    .contact-info {
+        align-items: center;
+    }
+    
+    .contact-item {
+        justify-content: center;
+    }
+    
+    .map-container iframe {
+        height: 200px;
+    }
+    
+    .footer-bottom-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 320px) {
+    .footer-content {
+        padding: 1rem 0.5rem;
+    }
+    
+    .footer-hospital-name {
+        font-size: 1.2rem;
+    }
+    
+    .footer-description {
+        font-size: 0.85rem;
+    }
+    
+    .appointment-btn {
+        font-size: 0.9rem !important;
+        padding: 0.6rem 1.2rem !important;
+    }
+}
+
+/* Focus and Accessibility */
+.footer-link-btn:focus,
+.footer-bottom-link:focus,
+.appointment-btn:focus {
+    outline: 2px solid #21CDC0;
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .footer-container {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .map-container,
+    .appointment-btn {
+        display: none;
+    }
+}

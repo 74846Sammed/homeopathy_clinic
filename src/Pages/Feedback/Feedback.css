@@ -1,0 +1,741 @@
+/* Feedback Section Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes avatarPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+}
+
+@keyframes quoteFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes starTwinkle {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+    animation: fadeInUp 1s ease-out;
+}
+
+.animate-fade-in-delay {
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.animate-testimonial-card {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-avatar {
+    animation: avatarPulse 3s ease-in-out infinite;
+}
+
+.animate-quote {
+    animation: quoteFloat 3s ease-in-out infinite;
+}
+
+.animate-quote-delay {
+    animation: quoteFloat 3s ease-in-out infinite 1s;
+}
+
+/* Main Feedback Section */
+.feedback-section {
+    background: linear-gradient(135deg, #f8f9ff 0%, #e8f4fd 100%);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.feedback-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(33, 205, 192, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(56, 81, 162, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.feedback-title-section {
+    position: relative;
+    z-index: 2;
+}
+
+.feedback-main-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #2d4990;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+/* Feedback Card Container */
+.feedback-card-container {
+    border-radius: 20px;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.feedback-card {
+    min-height: 280px;
+    background: linear-gradient(135deg, #3851A2 0%, #2d4990 100%);
+    border: none !important;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.feedback-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.feedback-card:hover::before {
+    transform: translateX(100%);
+}
+
+.feedback-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Carousel Indicators */
+.carousel-indi-feedback {
+    bottom: -50px !important;
+}
+
+.carousel-indi-feedback button {
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 50% !important;
+    border: 2px solid #3851A2 !important;
+    background-color: transparent !important;
+    margin: 0 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+.carousel-indi-feedback button.active {
+    background-color: #3851A2 !important;
+    transform: scale(1.2);
+}
+
+.carousel-indi-feedback button:hover {
+    transform: scale(1.1);
+    background-color: #21cdc0 !important;
+}
+
+/* Patient Avatar */
+.feedback-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.patient-logo {
+    height: 100px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Message Container */
+.feedback-message-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.left-quote-container, .right-quote-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-quote-container {
+    align-items: flex-start;
+    padding-top: 1rem;
+}
+
+.right-quote-container {
+    align-items: flex-end;
+    padding-bottom: 1rem;
+}
+
+.quotlogo-left, .quotlogo-right {
+    height: 40px;
+    width: 40px;
+    opacity: 0.6;
+    filter: invert(1);
+    transition: all 0.3s ease;
+}
+
+.feedback-card:hover .quotlogo-left,
+.feedback-card:hover .quotlogo-right {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+/* Message Box */
+.message-box {
+    color: #fff;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.star-rating {
+    margin-bottom: 1rem;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: #ffd700;
+    margin: 0 2px;
+    transition: all 0.3s ease;
+    animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.star:nth-child(1) { animation-delay: 0s; }
+.star:nth-child(2) { animation-delay: 0.2s; }
+.star:nth-child(3) { animation-delay: 0.4s; }
+.star:nth-child(4) { animation-delay: 0.6s; }
+.star:nth-child(5) { animation-delay: 0.8s; }
+
+.star.filled {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.message {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.patient-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #21cdc0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Carousel Controls */
+.feedback-control {
+    background: rgba(56, 81, 162, 0.8) !important;
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+.feedback-control:hover {
+    background: rgba(33, 205, 192, 0.9) !important;
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Responsive Design */
+
+/* Large Desktop (1440px and above) */
+@media (min-width: 1441px) {
+    .feedback-main-title {
+        font-size: 3.2rem;
+    }
+    
+    .feedback-subtitle {
+        font-size: 1.4rem;
+    }
+    
+    .feedback-card {
+        min-height: 280px;
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+    
+    .message {
+        font-size: 0.95rem;
+        text-align: center;
+        line-height: 1.5;
+    }
+    
+    .patient-name {
+        text-align: center !important;
+        font-size: 0.9rem;
+    }
+    
+    .star-rating {
+        justify-content: center !important;
+        margin-bottom: 1rem;
+    }
+    
+    .star {
+        font-size: 1.3rem;
+    }
+    
+    .patient-logo {
+        height: 70px;
+        width: 70px;
+    }
+    
+    .feedback-control {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .carousel-indi-feedback {
+        bottom: -40px !important;
+    }
+    
+    .carousel-indi-feedback button {
+        width: 12px !important;
+        height: 12px !important;
+        margin: 0 5px !important;
+    }
+}
+
+/* Mobile Portrait (up to 575px) */
+@media (max-width: 575px) {
+    .feedback-section {
+        padding: 2rem 0;
+    }
+    
+    .feedback-main-title {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+    
+    .feedback-subtitle {
+        font-size: 0.9rem;
+        padding: 0 1rem;
+        line-height: 1.4;
+    }
+    
+    .feedback-card-container {
+        margin-top: 1.5rem;
+    }
+    
+    .feedback-card {
+        min-height: 300px;
+        padding: 1.5rem 1rem;
+        margin: 0 0.5rem;
+        border-radius: 15px;
+    }
+    
+    .message {
+        font-size: 0.9rem;
+        text-align: center;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+    
+    .patient-name {
+        text-align: center !important;
+        font-size: 0.85rem;
+    }
+    
+    .star-rating {
+        justify-content: center !important;
+        margin-bottom: 1rem;
+    }
+    
+    .star {
+        font-size: 1.2rem;
+        margin: 0 1px;
+    }
+    
+    .patient-logo {
+        height: 60px;
+        width: 60px;
+        margin-bottom: 1rem;
+    }
+    
+    .feedback-control {
+        width: 35px !important;
+        height: 35px !important;
+        top: 50% !important;
+    }
+    
+    .carousel-control-prev {
+        left: -15px !important;
+    }
+    
+    .carousel-control-next {
+        right: -15px !important;
+    }
+    
+    .carousel-indi-feedback {
+        bottom: -35px !important;
+    }
+    
+    .carousel-indi-feedback button {
+        width: 10px !important;
+        height: 10px !important;
+        margin: 0 4px !important;
+    }
+    
+    .left-quote-container, .right-quote-container {
+        display: none;
+    }
+}
+
+/* Extra Small Mobile (up to 380px) */
+@media (max-width: 380px) {
+    .feedback-main-title {
+        font-size: 1.6rem;
+    }
+    
+    .feedback-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .feedback-card {
+        min-height: 280px;
+        padding: 1rem;
+        margin: 0 0.2rem;
+    }
+    
+    .message {
+        font-size: 0.85rem;
+    }
+    
+    .patient-name {
+        font-size: 0.8rem;
+    }
+    
+    .star {
+        font-size: 1.1rem;
+    }
+    
+    .patient-logo {
+        height: 50px;
+        width: 50px;
+    }
+}
+
+/* Hover Effects and Interactions */
+.carousel-item {
+    transition: all 0.5s ease;
+}
+
+.feedback-card:hover .patient-logo {
+    transform: scale(1.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.feedback-card:hover .star.filled {
+    color: #fff;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.feedback-card:hover .message {
+    transform: scale(1.02);
+}
+
+.feedback-card:hover .patient-name {
+    color: #6ef3e8;
+}
+
+/* Loading States */
+.carousel-inner-feedback {
+    min-height: 280px;
+}
+
+.carousel-item.active .feedback-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Accessibility Improvements */
+.feedback-control:focus {
+    outline: 3px solid #21cdc0;
+    outline-offset: 2px;
+}
+
+.carousel-indi-feedback button:focus {
+    outline: 2px solid #21cdc0;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .feedback-card {
+        border: 2px solid #fff;
+    }
+    
+    .message {
+        text-shadow: none;
+    }
+    
+    .patient-name {
+        text-shadow: none;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .animate-avatar,
+    .animate-quote,
+    .animate-quote-delay,
+    .star {
+        animation: none;
+    }
+    
+    .feedback-card:hover {
+        transform: none;
+    }
+    
+    .carousel-item.active .feedback-card {
+        animation: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    .feedback-section {
+        background: #fff !important;
+        padding: 1rem 0;
+    }
+    
+    .feedback-card {
+        background: #f5f5f5 !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next,
+    .carousel-indi-feedback {
+        display: none !important;
+    }
+}
+
+/* Desktop (1200px - 1440px) */
+@media (max-width: 1440px) and (min-width: 1200px) {
+    .feedback-main-title {
+        font-size: 3rem;
+    }
+    
+    .feedback-card {
+        min-height: 300px;
+    }
+    
+    .message {
+        font-size: 1.2rem;
+    }
+}
+
+/* Tablet Landscape (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .feedback-main-title {
+        font-size: 2.6rem;
+    }
+    
+    .feedback-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .feedback-card {
+        min-height: 280px;
+        padding: 2rem 1.5rem;
+    }
+    
+    .message {
+        font-size: 1.1rem;
+    }
+    
+    .patient-logo {
+        height: 90px;
+        width: 90px;
+    }
+    
+    .quotlogo-left, .quotlogo-right {
+        height: 35px;
+        width: 35px;
+    }
+}
+
+/* Tablet Portrait (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .feedback-section {
+        padding: 3rem 0;
+    }
+    
+    .feedback-main-title {
+        font-size: 2.4rem;
+    }
+    
+    .feedback-subtitle {
+        font-size: 1rem;
+    }
+    
+    .feedback-card {
+        min-height: 320px;
+        padding: 2rem;
+    }
+    
+    .message {
+        font-size: 1rem;
+        text-align: center;
+    }
+    
+    .patient-name {
+        text-align: center !important;
+    }
+    
+    .star-rating {
+        justify-content: center !important;
+    }
+    
+    .patient-logo {
+        height: 80px;
+        width: 80px;
+    }
+    
+    .feedback-control {
+        width: 45px !important;
+        height: 45px !important;
+    }
+}
+
+/* Mobile Landscape (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+    .feedback-section {
+        padding: 2.5rem 0;
+    }
+    
+    .feedback-main-title {
+        font-size: 2rem;
+    }
+    
+    .feedback-subtitle {
+        font-size: 0.95rem;
+        padding: 0 1rem;
+    }
+    
+    .feedback-card {
+        min-height: 280px;
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+    
+    .message {
+        font-size: 0.95rem;
+        text-align: center;
+        line-height: 1.5;
+    }
+    
+    .patient-name {
+        text-align: center !important;
+        font-size: 0.9rem;
+    }
+    
+    .star-rating {
+        justify-content: center !important;
+        margin-bottom: 1rem;
+    }
+    
+    .star {
+        font-size: 1.3rem;
+    }
+    
+    .patient-logo {
+        height: 70px;
+        width: 70px;
+    }
+    
+    .feedback-control {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .carousel-indi-feedback {
+        bottom: -40px !important;
+    }
+    
+    .carousel-indi-feedback button {
+        width: 12px !important;
+        height: 12px !important;
+        margin: 0 5px !important;
+    }
+}

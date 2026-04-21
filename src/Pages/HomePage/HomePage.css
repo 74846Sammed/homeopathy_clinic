@@ -1,0 +1,903 @@
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.animate-fade-in-left {
+    animation: slideInLeft 1s ease-out;
+}
+
+.animate-fade-in-right {
+    animation: slideInRight 1s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideUp 1s ease-out;
+}
+
+.animate-slide-up-delay {
+    animation: slideUp 1s ease-out 0.3s both;
+}
+
+.animate-card-hover {
+    transition: all 0.3s ease;
+}
+
+.animate-card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.animate-doctor-card {
+    transition: all 0.3s ease;
+    animation: bounceIn 0.8s ease-out;
+}
+
+.animate-doctor-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.animate-counter {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Carousel Styles */
+.carousel-inner-imgSlider {
+    height: 500px !important;
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+}
+
+.carousel-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item:hover .carousel-image {
+    transform: scale(1.05);
+}
+
+.slide-title {
+    font-size: 3rem !important;
+    font-weight: 700 !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: 1rem !important;
+    color: #3851A2;
+}
+
+.slide-description {
+    font-size: 1.2rem !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Card Container Styles */
+.card-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 4rem;
+}
+
+.first-card, .second-card, .third-card {
+    height: 220px;
+    color: azure;
+    margin-bottom: 0;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.first-card {
+    background: linear-gradient(135deg, #21cdc0, #1bb5a8);
+    border-radius: 20px 20px 20px 20px !important;
+}
+
+.second-card {
+    background: linear-gradient(135deg, #3851A2, #2a3d7a);
+    border-radius: 20px 20px 20px 20px !important;
+}
+
+.third-card {
+    background: linear-gradient(135deg, #2d4990, #1f3366);
+    border-radius: 20px 20px 20px 20px !important;
+}
+
+.first-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.content-lines {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.phoneNo {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.icon-container {
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.card-icon {
+    transition: transform 0.3s ease;
+}
+
+.animate-card-hover:hover .card-icon {
+    transform: rotate(360deg);
+}
+
+/* Button Styles */
+.timetable-btn, .book-appo-btn {
+    border-radius: 25px !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    font-weight: 600 !important;
+    padding: 8px 20px !important;
+    transition: all 0.3s ease !important;
+}
+
+.timetable-btn {
+    background-color: #3851A2 !important;
+}
+
+.book-appo-btn {
+    background-color: #2d4990 !important;
+}
+
+.animated-btn:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* About Us Section */
+.about-us-container {
+    margin: 4rem auto;
+    padding: 2rem 0;
+}
+
+.mark-hospital-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #2d4990;
+    line-height: 1.3;
+}
+
+.hospital-description {
+    font-size: 1rem;
+    text-align: justify;
+    line-height: 1.6;
+    color: #555;
+}
+
+.why-choose-us-card {
+    padding: 2rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #6ef3e8, #21cdc0);
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.why-choose-us-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.why-choose-us-card .title {
+    font-size: 2rem;
+    color: #2d4990;
+    font-weight: 700;
+    text-align: center;
+}
+
+.choose-us-points {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.check-icon {
+    color: #2d4990;
+    font-size: 1.2rem;
+    margin-top: 2px;
+    animation: pulse 2s infinite;
+}
+
+/* Doctors Section */
+.doctors-info {
+    width: 100%;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #21cdc0, #1bb5a8);
+}
+
+.doc-info-title {
+    text-align: center;
+}
+
+.meet-doc-text {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #2d4990;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-card {
+    border-radius: 20px !important;
+    border: 3px solid white !important;
+    overflow: hidden;
+    background: white;
+    height: 100%;
+}
+
+.doc-img-container {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.doc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.doctor-card:hover .doc-img {
+    transform: scale(1.1);
+}
+
+.doc-specialization {
+    background: linear-gradient(135deg, #2d4990, #1f3366);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    padding: 1rem;
+}
+
+.doc-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.doc-education {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Services Section */
+.services-container {
+    width: 100%;
+    padding: 4rem 0;
+}
+
+.services-container .title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #3851A2;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Success Numbers Section */
+.success-numbers {
+    background-image: url('../../Assets/Images/wallpaper2.jpg');
+    width: 100%;
+    min-height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 4rem 0;
+}
+
+.success-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.success-numbers .container {
+    position: relative;
+    z-index: 2;
+}
+
+.success-card {
+    background: rgba(56, 81, 162, 0.9) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 20px !important;
+    padding: 2rem !important;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.success-card:hover {
+    transform: translateY(-10px);
+    background: rgba(33, 205, 192, 0.9) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.success-card .no {
+    font-size: 2.5rem;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.success-card .title {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* FAQ Section */
+.faq-container-fluid {
+    background: linear-gradient(135deg, #21cdc0, #1bb5a8);
+    padding: 4rem 0;
+}
+
+.faq-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #2d4990;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+
+/* Large Desktop (1440px and above) */
+@media (min-width: 1441px) {
+    .carousel-inner-imgSlider {
+        height: 600px !important;
+    }
+    
+    .slide-title {
+        font-size: 4rem !important;
+    }
+    
+    .slide-description {
+        font-size: 1.4rem !important;
+    }
+}
+
+/* Desktop (1200px - 1440px) */
+@media (max-width: 1440px) and (min-width: 1200px) {
+    .carousel-inner-imgSlider {
+        height: 500px !important;
+    }
+    
+    .mark-hospital-title {
+        font-size: 2rem;
+    }
+}
+
+/* Tablet Landscape (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .carousel-inner-imgSlider {
+        height: 450px !important;
+    }
+    
+    .slide-title {
+        font-size: 2.5rem !important;
+    }
+    
+    .first-card, .second-card, .third-card {
+        height: 200px;
+    }
+    
+    .mark-hospital-title {
+        font-size: 1.8rem;
+    }
+    
+    .hospital-description {
+        font-size: 0.95rem;
+    }
+}
+
+/* Tablet Portrait (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .carousel-inner-imgSlider {
+        height: 400px !important;
+    }
+    
+    .slide-title {
+        font-size: 2.2rem !important;
+    }
+    
+    .slide-description {
+        font-size: 1rem !important;
+    }
+    
+    .card-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .first-card, .second-card, .third-card {
+        border-radius: 20px !important;
+        height: 180px;
+        margin-bottom: 1rem;
+    }
+    
+    .first-title {
+        font-size: 1.2rem;
+    }
+    
+    .content-lines {
+        font-size: 0.85rem;
+    }
+    
+    .about-us-container {
+        margin: 3rem auto;
+    }
+    
+    .mark-hospital-title {
+        font-size: 1.6rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hospital-description {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    
+    .why-choose-us-card .title {
+        font-size: 1.6rem;
+    }
+    
+    .choose-us-points {
+        font-size: 0.9rem;
+    }
+    
+    .doc-info-title {
+        font-size: 2.2rem;
+    }
+    
+    .success-card {
+        height: 130px;
+        padding: 1.5rem !important;
+    }
+    
+    .success-card .no {
+        font-size: 2rem;
+    }
+    
+    .success-card .title {
+        font-size: 1rem;
+    }
+    
+    .services-container .title {
+        font-size: 2.2rem;
+    }
+    
+    .faq-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* Mobile Landscape (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+    .carousel-inner-imgSlider {
+        height: 300px !important;
+    }
+    
+    .slide-title {
+        font-size: 1.8rem !important;
+    }
+    
+    .slide-description {
+        font-size: 0.9rem !important;
+    }
+    
+    .card-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .first-card, .second-card, .third-card {
+        border-radius: 15px !important;
+        height: 160px;
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem !important;
+    }
+    
+    .first-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .content-lines {
+        font-size: 0.8rem;
+    }
+    
+    .phoneNo {
+        font-size: 1rem;
+    }
+    
+    .about-us-container {
+        margin: 2rem auto;
+        padding: 1rem;
+    }
+    
+    .mark-hospital-title {
+        font-size: 1.4rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .hospital-description {
+        font-size: 0.85rem;
+        text-align: center;
+    }
+    
+    .why-choose-us {
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .why-choose-us-card {
+        padding: 1.5rem;
+    }
+    
+    .why-choose-us-card .title {
+        font-size: 1.4rem;
+    }
+    
+    .choose-us-points {
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .doctors-info {
+        padding: 3rem 1rem;
+    }
+    
+    .meet-doc-text {
+        font-size: 2rem;
+    }
+    
+    .doc-img-container {
+        height: 250px;
+    }
+    
+    .success-numbers {
+        background-attachment: scroll;
+        min-height: 300px;
+        padding: 2rem 0;
+    }
+    
+    .success-card {
+        height: 120px;
+        padding: 1rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    .success-card .no {
+        font-size: 1.8rem;
+    }
+    
+    .success-card .title {
+        font-size: 0.9rem;
+    }
+    
+    .services-container .title {
+        font-size: 2rem;
+    }
+    
+    .faq-title {
+        font-size: 2rem;
+    }
+}
+
+/* Mobile Portrait (up to 575px) */
+@media (max-width: 575px) {
+    .carousel-inner-imgSlider {
+        height: 250px !important;
+    }
+    
+    .carousel-caption {
+        display: none !important;
+    }
+    
+    .slide-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .slide-description {
+        font-size: 0.8rem !important;
+    }
+    
+    .card-container {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0 0.5rem;
+    }
+    
+    .first-card, .second-card, .third-card {
+        border-radius: 15px !important;
+        height: 140px;
+        flex-direction: column;
+        text-align: center;
+        padding: 0.8rem !important;
+    }
+    
+    .icon-container {
+        padding: 10px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .card-icon {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .first-title {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .content-lines {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+    
+    .phoneNo {
+        font-size: 0.9rem;
+    }
+    
+    .timetable-btn, .book-appo-btn {
+        font-size: 0.75rem !important;
+        padding: 6px 12px !important;
+    }
+    
+    .about-us-container {
+        margin: 1.5rem auto;
+        padding: 1rem 0.5rem;
+    }
+    
+    .mark-hospital-title {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+    
+    .hospital-description {
+        font-size: 0.8rem;
+        text-align: center;
+        line-height: 1.5;
+    }
+    
+    .why-choose-us {
+        padding: 0.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .why-choose-us-card {
+        padding: 1rem;
+    }
+    
+    .why-choose-us-card .title {
+        font-size: 1.2rem;
+    }
+    
+    .choose-us-points {
+        font-size: 0.8rem;
+        margin-bottom: 0.6rem;
+        align-items: flex-start;
+    }
+    
+    .check-icon {
+        font-size: 1rem;
+        margin-top: 1px;
+    }
+    
+    .doctors-info {
+        padding: 2rem 0.5rem;
+    }
+    
+    .meet-doc-text {
+        font-size: 1.6rem;
+    }
+    
+    .doc-img-container {
+        height: 200px;
+    }
+    
+    .doc-specialization {
+        height: 80px;
+        padding: 0.5rem;
+    }
+    
+    .doc-name {
+        font-size: 1.1rem;
+    }
+    
+    .doc-education {
+        font-size: 0.8rem;
+    }
+    
+    .success-numbers {
+        background-attachment: scroll;
+        min-height: 250px;
+        padding: 2rem 0.5rem;
+    }
+    
+    .success-card {
+        height: 100px;
+        padding: 0.8rem !important;
+        margin-bottom: 0.8rem;
+    }
+    
+    .success-card .no {
+        font-size: 1.5rem;
+    }
+    
+    .success-card .title {
+        font-size: 0.8rem;
+    }
+    
+    .services-container {
+        padding: 2rem 0;
+    }
+    
+    .services-container .title {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+    }
+    
+    .faq-container-fluid {
+        padding: 2rem 0;
+    }
+    
+    .faq-title {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Extra animations and hover effects */
+.first-card::before, .second-card::before, .third-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.first-card:hover::before, .second-card:hover::before, .third-card:hover::before {
+    left: 100%;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading animations */
+.card, .doctor-card, .success-card {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

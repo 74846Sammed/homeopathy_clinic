@@ -1,0 +1,124 @@
+.contact-hero {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  margin-top: 70px;
+  background-image: url('../../Assets/Images/wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+.contact-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(33,205,192,0.6), rgba(33,51,96,0.7));
+}
+
+.contact-hero-content {
+  position: relative;
+  color: #fff;
+}
+
+.contact-hero-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  text-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+
+.contact-hero-subtitle {
+  font-size: 1rem;
+  opacity: 0.95;
+}
+
+.contact-wrapper {
+  padding: 3rem 0;
+}
+
+.contact-card,
+.contact-info-card {
+  border: none;
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.contact-card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2d4990;
+  margin-bottom: 1rem;
+}
+
+.contact-input .MuiOutlinedInput-root {
+  background: #ffffff;
+}
+
+.primary-btn {
+  background: linear-gradient(45deg, #21CDC0, #1bb3a6) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-radius: 25px !important;
+  padding: 10px 18px !important;
+  text-transform: none !important;
+}
+
+.outline-btn {
+  border-color: #21CDC0 !important;
+  color: #2d4990 !important;
+  border-radius: 25px !important;
+  padding: 10px 18px !important;
+  text-transform: none !important;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+}
+
+.contact-icon {
+  color: #21CDC0;
+  font-size: 1.1rem;
+}
+
+.contact-info-label {
+  font-size: 0.85rem;
+  color: #4a5568;
+}
+
+.contact-info-value {
+  font-weight: 600;
+}
+
+.whatsapp-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  background: #25D366;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-cta:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); 
+}
+
+@media (max-width: 991px) {
+  .contact-hero { height: 260px; }
+  .contact-hero-title { font-size: 2.2rem; }
+}
+
+@media (max-width: 575px) {
+  .contact-hero { height: 220px; }
+  .contact-hero-title { font-size: 1.8rem; }
+  .contact-card, .contact-info-card { padding: 1.1rem; }
+}
+
