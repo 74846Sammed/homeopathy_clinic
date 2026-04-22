@@ -1,50 +1,136 @@
-.services-card-container {
+/* =========================================
+   Services Section — Responsive & Scalable
+   ========================================= */
+
+.services-section {
     width: 100%;
-    height: 260px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
+    padding: 48px 24px;
+    box-sizing: border-box;
 }
 
-.services-card-container .card {
-    height: 200px;
-    width: 200px;
-    border-radius: 15px;
+/* ── Grid: auto-fills columns, min 160px each ──
+   Adding a new row of cards = zero CSS changes.
+   On desktop: 4 per row → on tablet: 3/2 → mobile: 2/1 */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(221px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ── Card ── */
+.service-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+    cursor: pointer;
     display: flex;
     flex-direction: column;
+    background: #fff;
+    transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.32s ease;
+
+    /* Staggered fade-in on mount */
+    animation: cardReveal 0.5s ease both;
+}
+
+.service-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(45, 73, 144, 0.22);
+}
+
+@keyframes cardReveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Image wrapper: fixed aspect ratio ── */
+.service-card__img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;   /* Square crop — consistent regardless of source */
     overflow: hidden;
 }
 
-.services-card-container .card-img-container {
-    height: 200px;
-    width: 200px;
-    border-radius: 15px;
-}
-
-.card-img-container .service-img {
+.service-card__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-top-right-radius: 15px;
-    border-top-left-radius: 15px;
-    transition: transform 0.3s ease; 
-}
-.card-img-container:hover .service-img {
-    transform: scale(1.2); 
+    display: block;
+    transition: transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.services-card-container .service-name {
-    height: 100px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: justify;
-    flex-direction: row;
-    font-size: 1rem;
-    background-color: #2d4990;
-    color: white;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+.service-card:hover .service-card__img {
+    transform: scale(1.12);
+}
+
+/* Subtle gradient overlay on image for depth */
+.service-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 55%,
+        rgba(45, 73, 144, 0.18) 100%
+    );
+    pointer-events: none;
+}
+
+/* ── Label ── */
+.service-card__name {
+    background: linear-gradient(135deg, #2d4990 0%, #3a5fc1 100%);
+    color: #fff;
+    text-align: center;
+    padding: 12px 8px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: capitalize;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    /* Smooth label lift on hover */
+    transition: background 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.service-card:hover .service-card__name {
+    background: linear-gradient(135deg, #1c3270 0%, #2d4990 100%);
+    letter-spacing: 0.06em;
+}
+
+/* =========================================
+   Responsive Breakpoints
+   ========================================= */
+
+/* Tablet (≤ 900px): 3 columns */
+@media (max-width: 900px) {
+    .services-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 18px;
+    }
+    .services-section {
+        padding: 36px 16px;
+    }
+}
+
+/* Mobile (≤ 560px): 2 columns */
+@media (max-width: 560px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+    .services-section {
+        padding: 24px 12px;
+    }
+    .service-card__name {
+        font-size: 0.82rem;
+        padding: 10px 6px;
+    }
+}
+
+/* Very small phones (≤ 340px): single column */
+@media (max-width: 340px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
 }

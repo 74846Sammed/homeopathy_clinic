@@ -1,5 +1,517 @@
-.logo{
-    width: 60px;
-    height: 60px;
-    margin-right: 5px;
+/* ═══════════════════════════════════════════════════════════
+   Mark's Hospital — Header CSS
+   Responsive: mobile (≤600px) · tablet (601-1023px) · desktop (≥1024px)
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Design tokens ── */
+:root {
+  --mh-navy:       #0f2247;
+  --mh-navy-deep:  #091630;
+  --mh-green:      #22c87a;
+  --mh-green-dark: #18a862;
+  --mh-white:      #ffffff;
+  --mh-off-white:  #f0f4ff;
+  --mh-text-dim:   rgba(255,255,255,0.65);
+  --mh-header-h:   72px;   /* Used in body padding-top calculation */
+  --mh-accent-h:   4px;    /* Used in body padding-top calculation */
+  --mh-radius:     10px;
+  --mh-font-brand: 'Playfair Display', Georgia, serif;
+  --mh-font-body:  'DM Sans', system-ui, sans-serif;
+  --mh-ease:       cubic-bezier(0.4, 0, 0.2, 1);
+  --mh-shadow:     0 4px 24px rgba(9,22,48,0.18);
+  --mh-shadow-lg:  0 8px 40px rgba(9,22,48,0.28);
+}
+
+/* ═══════════════ HEADER SHELL ═══════════════ */
+
+.mh-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--mh-navy);
+  transition: box-shadow 0.3s var(--mh-ease), background 0.3s var(--mh-ease);
+  font-family: var(--mh-font-body);
+}
+
+.mh-header--scrolled {
+  background: var(--mh-navy-deep);
+  box-shadow: var(--mh-shadow-lg);
+}
+
+/* ── Colorful accent stripe at the very top ── */
+.mh-accent-bar {
+  height: var(--mh-accent-h);
+  background: linear-gradient(90deg,
+    #22c87a 0%,
+    #3ab8f5 35%,
+    #7b68ee 65%,
+    #22c87a 100%);
+  background-size: 200% 100%;
+  animation: mh-slide-gradient 5s linear infinite;
+}
+
+@keyframes mh-slide-gradient {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+/* ── Inner layout ── */
+.mh-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: var(--mh-header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(16px, 4vw, 48px);
+  gap: 16px;
+}
+
+/*
+  FIX — Body padding-top:
+  The header is fixed, so the body needs top padding equal to the total
+  header height (accent bar + nav bar) so page content is never hidden.
+  Total = --mh-accent-h (4px) + --mh-header-h (72px) = 76px (desktop)
+  On mobile (≤600px), --mh-header-h becomes 64px → 68px total.
+
+  NOTE: Do NOT add extra marginTop to sections — this padding is sufficient.
+  The HomePage hero section previously had marginTop: '70px' which created
+  a double-offset white gap. That has been removed in HomePage.jsx.
+*/
+body {
+  padding-top: calc(var(--mh-header-h) + var(--mh-accent-h));
+}
+
+/* ═══════════════ BRAND / LOGO ═══════════════ */
+
+.mh-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+  outline-offset: 4px;
+  border-radius: var(--mh-radius);
+}
+
+.mh-logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mh-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid rgba(34,200,122,0.4);
+  transition: transform 0.4s var(--mh-ease), border-color 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.mh-brand:hover .mh-logo {
+  transform: rotate(-6deg) scale(1.08);
+  border-color: var(--mh-green);
+}
+
+/* subtle pulsing ring behind logo */
+.mh-logo-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(34,200,122,0.25);
+  animation: mh-ring-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes mh-ring-pulse {
+  0%, 100% { transform: scale(1);    opacity: 0.6; }
+  50%       { transform: scale(1.15); opacity: 0.15; }
+}
+
+.mh-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.mh-brand-name {
+  font-family: var(--mh-font-brand);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 700;
+  color: var(--mh-white);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.mh-brand-tagline {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--mh-green);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ═══════════════ DESKTOP NAV ═══════════════ */
+
+.mh-nav {
+  display: flex;
+  align-items: center;
+}
+
+.mh-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* staggered entrance animation */
+.mh-nav li {
+  animation: mh-nav-drop 0.5s var(--mh-ease) both;
+  animation-delay: calc(var(--i, 0) * 80ms + 100ms);
+}
+
+@keyframes mh-nav-drop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mh-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: var(--mh-radius);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--mh-text-dim);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.25s var(--mh-ease), background 0.25s var(--mh-ease);
+  outline-offset: 3px;
+  overflow: hidden;
+}
+
+.mh-nav-link:hover {
+  color: var(--mh-white);
+  background: rgba(255,255,255,0.07);
+}
+
+/* animated underline ink */
+.mh-nav-ink {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: calc(100% - 24px);
+  height: 2px;
+  background: var(--mh-green);
+  border-radius: 2px;
+  transition: transform 0.3s var(--mh-ease);
+  transform-origin: center;
+}
+
+.mh-nav-link:hover .mh-nav-ink,
+.mh-nav-link--active .mh-nav-ink {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.mh-nav-link--active {
+  color: var(--mh-white);
+  background: rgba(34,200,122,0.12);
+  font-weight: 600;
+}
+
+/* ═══════════════ CTA BUTTON (desktop) ═══════════════ */
+
+.mh-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--mh-green);
+  color: var(--mh-navy-deep);
+  font-family: var(--mh-font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background   0.25s var(--mh-ease),
+    transform    0.2s  var(--mh-ease),
+    box-shadow   0.25s var(--mh-ease);
+  box-shadow: 0 2px 14px rgba(34,200,122,0.35);
+  animation: mh-nav-drop 0.5s var(--mh-ease) 450ms both;
+}
+
+.mh-cta:hover {
+  background: var(--mh-green-dark);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 6px 22px rgba(34,200,122,0.45);
+}
+
+.mh-cta:active {
+  transform: scale(0.97);
+}
+
+.mh-cta svg {
+  transition: transform 0.25s var(--mh-ease);
+}
+
+.mh-cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* ═══════════════ HAMBURGER ═══════════════ */
+
+.mh-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--mh-radius);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.mh-burger:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+.mh-burger span {
+  display: block;
+  height: 2px;
+  background: var(--mh-white);
+  border-radius: 2px;
+  transition: transform 0.35s var(--mh-ease), opacity 0.25s, width 0.3s;
+  transform-origin: center;
+}
+
+.mh-burger span:nth-child(1) { width: 22px; }
+.mh-burger span:nth-child(2) { width: 28px; }
+.mh-burger span:nth-child(3) { width: 18px; }
+
+/* open state → X */
+.mh-burger--open span:nth-child(1) {
+  width: 24px;
+  transform: translateY(7px) rotate(45deg);
+}
+.mh-burger--open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.mh-burger--open span:nth-child(3) {
+  width: 24px;
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ═══════════════ OVERLAY ═══════════════ */
+
+.mh-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(9,22,48,0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s var(--mh-ease);
+}
+
+.mh-overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ═══════════════ MOBILE DRAWER ═══════════════ */
+
+.mh-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  width: min(300px, 82vw);
+  background: var(--mh-navy-deep);
+  border-left: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 20px 36px;
+  gap: 8px;
+  transform: translateX(100%);
+  transition: transform 0.38s var(--mh-ease);
+  box-shadow: -8px 0 40px rgba(9,22,48,0.4);
+  overflow-y: auto;
+}
+
+.mh-drawer--open {
+  transform: translateX(0);
+}
+
+.mh-drawer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mh-drawer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.mh-drawer-brand img {
+  border-radius: 50%;
+  border: 2px solid rgba(34,200,122,0.35);
+  object-fit: contain;
+}
+
+.mh-drawer-brand span {
+  font-family: var(--mh-font-brand);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--mh-white);
+}
+
+/* staggered slide-in for drawer items */
+.mh-drawer li {
+  animation: none;
+}
+
+.mh-drawer--open li {
+  animation: mh-drawer-in 0.4s var(--mh-ease) both;
+  animation-delay: calc(var(--di, 0) * 60ms + 80ms);
+}
+
+@keyframes mh-drawer-in {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.mh-drawer-link {
+  display: block;
+  padding: 13px 18px;
+  border-radius: var(--mh-radius);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--mh-text-dim);
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+  border: 1px solid transparent;
+}
+
+.mh-drawer-link:hover {
+  color: var(--mh-white);
+  background: rgba(255,255,255,0.06);
+}
+
+.mh-drawer-link--active {
+  color: var(--mh-white);
+  background: rgba(34,200,122,0.14);
+  border-color: rgba(34,200,122,0.25);
+  font-weight: 600;
+}
+
+.mh-drawer-cta {
+  display: block;
+  margin-top: auto;
+  padding: 14px;
+  background: var(--mh-green);
+  color: var(--mh-navy-deep);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--mh-radius);
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(34,200,122,0.3);
+}
+
+.mh-drawer-cta:hover {
+  background: var(--mh-green-dark);
+  transform: translateY(-1px);
+}
+
+/* ═══════════════ FOCUS RING (accessibility) ═══════════════ */
+
+.mh-brand:focus-visible,
+.mh-nav-link:focus-visible,
+.mh-cta:focus-visible,
+.mh-burger:focus-visible,
+.mh-drawer-link:focus-visible,
+.mh-drawer-cta:focus-visible {
+  outline: 2px solid var(--mh-green);
+  outline-offset: 3px;
+}
+
+/* ═══════════════ RESPONSIVE BREAKPOINTS ═══════════════ */
+
+/* ── Tablet (601px – 1023px) ── */
+@media (max-width: 1023px) {
+  .mh-nav  { display: none; }
+  .mh-cta  { display: none; }
+  .mh-burger { display: flex; }
+}
+
+/* ── Mobile (≤ 600px) ── */
+@media (max-width: 600px) {
+  /*
+    On mobile the header inner height shrinks to 64px.
+    Total height = 64px + 4px accent = 68px.
+    body padding-top updates automatically via CSS variables.
+  */
+  :root { --mh-header-h: 64px; }
+
+  .mh-brand-tagline { display: none; }
+
+  .mh-logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .mh-brand-name {
+    font-size: 0.95rem;
+  }
+}
+
+/* ── Large desktop (≥ 1280px) ── */
+@media (min-width: 1280px) {
+  .mh-nav ul { gap: 8px; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .mh-accent-bar      { animation: none; }
+  .mh-logo-ring       { animation: none; }
+  .mh-nav li          { animation: none; }
+  .mh-cta             { animation: none; }
+  .mh-drawer--open li { animation: none; }
+  * { transition-duration: 0.01ms !important; }
 }

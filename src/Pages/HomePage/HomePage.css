@@ -1,903 +1,1068 @@
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ══════════════════════════════════════════════
+   MARK HOSPITAL — HOMEPAGE CSS
+   Elite Design System | SEO + UX Optimized
+══════════════════════════════════════════════ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --teal:       #21cdc0;
+  --teal-dark:  #1bb5a8;
+  --teal-light: #6ef3e8;
+  --navy:       #2d4990;
+  --navy-dark:  #1f3366;
+  --navy-mid:   #3851A2;
+  --white:      #ffffff;
+  --off-white:  #f8fbff;
+  --text-dark:  #1a2340;
+  --text-mid:   #4a5568;
+  --gold:       #f6c90e;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --shadow-sm:  0 4px 15px rgba(45,73,144,0.10);
+  --shadow-md:  0 10px 40px rgba(45,73,144,0.15);
+  --shadow-lg:  0 20px 60px rgba(45,73,144,0.20);
+  --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', 'Segoe UI', sans-serif;
 }
 
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--white);
+  overflow-x: hidden;
 }
 
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+/* ── SEO Hidden (visible to crawlers, not cluttering UI) ── */
+.seo-hidden {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ══════════════════════════════════════════════
+   KEYFRAMES
+══════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.12); }
+}
+@keyframes shimmer {
+  0%   { left: -100%; }
+  100% { left: 200%; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+  33%       { transform: translateY(-30px) rotate(120deg); opacity: 1; }
+  66%       { transform: translateY(-15px) rotate(240deg); opacity: 0.8; }
+}
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes slideCaption {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes borderGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(33,205,192,0.3); }
+  50%       { box-shadow: 0 0 35px rgba(33,205,192,0.7); }
+}
+@keyframes statGlow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(1.2); }
+}
+@keyframes ripple {
+  from { transform: scale(0.8); opacity: 1; }
+  to   { transform: scale(2); opacity: 0; }
 }
 
-@keyframes bounceIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.3);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.05);
-    }
-    70% {
-        transform: scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+/* ══════════════════════════════════════════════
+   SECTION HEADERS (shared)
+══════════════════════════════════════════════ */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: rgba(33,205,192,0.10);
+  padding: 6px 18px;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+}
+.section-eyebrow.light { color: var(--teal-light); background: rgba(255,255,255,0.15); }
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 0.8rem;
+  line-height: 1.15;
+}
+.section-heading.light { color: var(--white); }
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* Animation Classes */
-.animate-fade-in {
-    animation: fadeIn 1s ease-out;
-}
+/* ══════════════════════════════════════════════
+   HERO / CAROUSEL
+   FIX 1: height = calc(100vh - 76px)
+     76px = --mh-header-h (72px) + --mh-accent-h (4px) from Header.css
+     This makes the carousel fill exactly the remaining viewport.
+   FIX 2: Carousel controls z-index lifted above overlay (z-index: 5)
+   FIX 3: Carousel indicators z-index lifted above overlay (z-index: 5)
+══════════════════════════════════════════════ */
+.hero-section { position: relative; }
 
-.animate-fade-in-left {
-    animation: slideInLeft 1s ease-out;
-}
-
-.animate-fade-in-right {
-    animation: slideInRight 1s ease-out;
-}
-
-.animate-slide-up {
-    animation: slideUp 1s ease-out;
-}
-
-.animate-slide-up-delay {
-    animation: slideUp 1s ease-out 0.3s both;
-}
-
-.animate-card-hover {
-    transition: all 0.3s ease;
-}
-
-.animate-card-hover:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-}
-
-.animate-doctor-card {
-    transition: all 0.3s ease;
-    animation: bounceIn 0.8s ease-out;
-}
-
-.animate-doctor-card:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.animate-counter {
-    animation: fadeIn 1s ease-out;
-}
-
-/* Carousel Styles */
+/* ── All slides same full-viewport height ── */
 .carousel-inner-imgSlider {
-    height: 500px !important;
-    border-radius: 0 0 20px 20px;
-    overflow: hidden;
+  height: calc(100vh - 76px) !important; /* 72px header + 4px accent bar */
+  overflow: hidden;
+}
+
+.carousel-item {
+  height: 100% !important;
 }
 
 .carousel-image {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+  filter: brightness(0.75);
 }
 
-.carousel-item:hover .carousel-image {
-    transform: scale(1.05);
+.carousel-item.active .carousel-image {
+  transform: scale(1);
+}
+
+.carousel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(29,45,100,0.72) 0%,
+    rgba(33,205,192,0.25) 100%
+  );
+  /* z-index: 1 — caption is z-index 2, controls are z-index 5 */
+  z-index: 1;
+}
+
+/* ── FIX: Carousel control buttons above overlay ── */
+.carousel-control-prev,
+.carousel-control-next {
+  z-index: 5 !important;
+  width: 56px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: rgba(33, 205, 192, 0.5);
+  border-radius: 50%;
+  background-size: 50%;
+  backdrop-filter: blur(4px);
+}
+
+/* ── FIX: Carousel indicators above overlay ── */
+.carousel-indicators {
+  z-index: 5 !important;
+  margin-bottom: 1.5rem;
+}
+
+.carousel-indicators [data-bs-target] {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: background-color 0.3s, transform 0.3s;
+  margin: 0 5px;
+}
+
+.carousel-indicators .active {
+  background-color: var(--teal);
+  transform: scale(1.3);
+}
+
+/* Caption */
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 5rem;
+  text-align: left;
+}
+
+.slide-badge {
+  display: inline-block;
+  background: rgba(33,205,192,0.9);
+  color: var(--white);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 1.2rem;
+  animation: slideCaption 0.7s ease-out;
+  backdrop-filter: blur(4px);
 }
 
 .slide-title {
-    font-size: 3rem !important;
-    font-weight: 700 !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    margin-bottom: 1rem !important;
-    color: #3851A2;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4.2rem) !important;
+  font-weight: 900 !important;
+  color: var(--white) !important;
+  line-height: 1.1 !important;
+  margin-bottom: 1.2rem !important;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
+  animation: slideCaption 0.8s ease-out 0.15s both;
+  max-width: 700px;
 }
 
 .slide-description {
-    font-size: 1.2rem !important;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  font-size: clamp(1rem, 2vw, 1.25rem) !important;
+  color: rgba(255,255,255,0.92) !important;
+  max-width: 600px;
+  line-height: 1.6 !important;
+  animation: slideCaption 0.8s ease-out 0.3s both;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
 }
 
-/* Card Container Styles */
-.card-container {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 4rem;
+.slide-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2rem;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  animation: slideCaption 0.8s ease-out 0.45s both;
+  transition: var(--transition);
+  box-shadow: 0 8px 30px rgba(33,205,192,0.4);
+  position: relative;
+  z-index: 3;
+}
+.slide-cta-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(33,205,192,0.55);
 }
 
-.first-card, .second-card, .third-card {
-    height: 220px;
-    color: azure;
-    margin-bottom: 0;
-    border: none;
-    position: relative;
-    overflow: hidden;
+/* ── Hero Quick Bar ── */
+.hero-quick-bar {
+  position: relative;
+  z-index: 10;
+  background: var(--white);
+  box-shadow: var(--shadow-md);
 }
 
-.first-card {
-    background: linear-gradient(135deg, #21cdc0, #1bb5a8);
-    border-radius: 20px 20px 20px 20px !important;
+.quick-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1.2rem 0;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.second-card {
-    background: linear-gradient(135deg, #3851A2, #2a3d7a);
-    border-radius: 20px 20px 20px 20px !important;
+.quick-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.third-card {
-    background: linear-gradient(135deg, #2d4990, #1f3366);
-    border-radius: 20px 20px 20px 20px !important;
+.quick-item div {
+  display: flex;
+  flex-direction: column;
 }
+
+.qb-icon {
+  font-size: 1.6rem;
+  color: var(--teal);
+}
+
+.qb-icon.star { color: var(--gold); }
+
+.qb-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-mid);
+}
+
+.qb-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.quick-divider {
+  width: 1px;
+  height: 40px;
+  background: #e2e8f0;
+}
+
+/* ══════════════════════════════════════════════
+   INFO CARDS
+══════════════════════════════════════════════ */
+.info-cards-section {
+  padding: 3rem 0 1rem;
+}
+
+.info-card {
+  height: 210px;
+  color: var(--white);
+  border: none !important;
+  border-radius: var(--radius-xl) !important;
+  overflow: hidden;
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.info-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.info-card:hover .card-shine { left: 160%; }
+
+.first-card  { background: linear-gradient(135deg, #1dd9cb 0%, #0fb5a8 100%); }
+.second-card { background: linear-gradient(135deg, #3851A2 0%, #2a3d7a 100%); }
+.third-card  { background: linear-gradient(135deg, #1f3366 0%, #162550 100%); }
 
 .first-title {
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 .content-lines {
-    font-size: 0.9rem;
-    line-height: 1.4;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  opacity: 0.92;
 }
 
 .phoneNo {
-    font-size: 1.2rem;
-    font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-.icon-container {
-    padding: 15px;
-    transition: all 0.3s ease;
-}
+.icon-container { padding: 12px; }
 
 .card-icon {
-    transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
 }
 
-.animate-card-hover:hover .card-icon {
-    transform: rotate(360deg);
-}
+.info-card:hover .card-icon { transform: rotate(15deg) scale(1.15); }
 
-/* Button Styles */
 .timetable-btn, .book-appo-btn {
-    border-radius: 25px !important;
-    border: 2px solid rgba(255, 255, 255, 0.3) !important;
-    font-weight: 600 !important;
-    padding: 8px 20px !important;
-    transition: all 0.3s ease !important;
-}
-
-.timetable-btn {
-    background-color: #3851A2 !important;
-}
-
-.book-appo-btn {
-    background-color: #2d4990 !important;
+  border-radius: 50px !important;
+  border: 2px solid rgba(255,255,255,0.4) !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem !important;
+  padding: 7px 18px !important;
+  background: rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(4px);
+  transition: var(--transition) !important;
 }
 
 .animated-btn:hover {
-    transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background: rgba(255,255,255,0.35) !important;
+  transform: translateX(4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
-/* About Us Section */
-.about-us-container {
-    margin: 4rem auto;
-    padding: 2rem 0;
+/* ══════════════════════════════════════════════
+   ABOUT SECTION
+══════════════════════════════════════════════ */
+.about-section {
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about-section.in-view { opacity: 1; transform: translateY(0); }
+
+.about-section.in-view .about-left  { animation: fadeLeft 0.9s ease-out both; }
+.about-section.in-view .col-lg-6:last-child { animation: fadeRight 0.9s ease-out 0.2s both; }
+
+.about-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  background: rgba(33,205,192,0.12);
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 1.2rem;
 }
 
 .mark-hospital-title {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #2d4990;
-    line-height: 1.3;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.title-accent {
+  background: linear-gradient(135deg, var(--teal), var(--navy-mid));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hospital-description {
-    font-size: 1rem;
-    text-align: justify;
-    line-height: 1.6;
-    color: #555;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--text-mid);
+  margin-bottom: 1rem;
 }
 
+.about-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1.8rem;
+}
+
+.ab-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 50px;
+  background: var(--white);
+  border: 2px solid rgba(33,205,192,0.3);
+  color: var(--navy);
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.ab-badge:hover {
+  background: var(--teal);
+  color: var(--white);
+  border-color: var(--teal);
+  transform: translateY(-3px);
+}
+
+/* Why Choose Us Card */
 .why-choose-us-card {
-    padding: 2rem;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #6ef3e8, #21cdc0);
-    border: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  padding: 2.5rem;
+  border-radius: var(--radius-xl) !important;
+  background: linear-gradient(145deg, #d4f8f5, #a8efea) !important;
+  border: none !important;
+  box-shadow: var(--shadow-lg);
+  animation: borderGlow 3s ease infinite;
+  transition: var(--transition);
 }
 
 .why-choose-us-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 30px 70px rgba(33,205,192,0.35);
 }
 
-.why-choose-us-card .title {
-    font-size: 2rem;
-    color: #2d4990;
-    font-weight: 700;
-    text-align: center;
+.why-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--navy);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1.8rem;
 }
 
 .choose-us-points {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: var(--text-dark);
 }
 
 .check-icon {
-    color: #2d4990;
-    font-size: 1.2rem;
-    margin-top: 2px;
-    animation: pulse 2s infinite;
+  color: var(--navy);
+  font-size: 1.1rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+  animation: pulse 2.5s infinite;
 }
 
-/* Doctors Section */
-.doctors-info {
-    width: 100%;
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, #21cdc0, #1bb5a8);
+/* ── Floating Particles ── */
+.particles-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
 }
 
-.doc-info-title {
-    text-align: center;
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--teal-light), transparent);
+  opacity: 0;
+  animation: float linear infinite;
 }
 
-.meet-doc-text {
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #2d4990;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+/* Generate varied sizes and positions */
+.particle-1  { width:8px;  height:8px;  left:5%;   top:20%; animation-duration:8s;  animation-delay:0s;   }
+.particle-2  { width:12px; height:12px; left:15%;  top:70%; animation-duration:11s; animation-delay:1s;   }
+.particle-3  { width:6px;  height:6px;  left:25%;  top:40%; animation-duration:9s;  animation-delay:2s;   }
+.particle-4  { width:14px; height:14px; left:35%;  top:10%; animation-duration:13s; animation-delay:0.5s; }
+.particle-5  { width:8px;  height:8px;  left:45%;  top:80%; animation-duration:7s;  animation-delay:3s;   }
+.particle-6  { width:10px; height:10px; left:55%;  top:30%; animation-duration:10s; animation-delay:1.5s; }
+.particle-7  { width:6px;  height:6px;  left:65%;  top:60%; animation-duration:12s; animation-delay:0.2s; }
+.particle-8  { width:16px; height:16px; left:75%;  top:15%; animation-duration:8s;  animation-delay:4s;   }
+.particle-9  { width:8px;  height:8px;  left:85%;  top:75%; animation-duration:9s;  animation-delay:2.5s; }
+.particle-10 { width:12px; height:12px; left:92%;  top:45%; animation-duration:11s; animation-delay:1.2s; }
+.particle-11 { width:7px;  height:7px;  left:10%;  top:55%; animation-duration:14s; animation-delay:3.5s; }
+.particle-12 { width:9px;  height:9px;  left:30%;  top:85%; animation-duration:8s;  animation-delay:0.8s; }
+.particle-13 { width:11px; height:11px; left:50%;  top:5%;  animation-duration:10s; animation-delay:2.2s; }
+.particle-14 { width:7px;  height:7px;  left:70%;  top:90%; animation-duration:12s; animation-delay:1.8s; }
+.particle-15 { width:13px; height:13px; left:80%;  top:35%; animation-duration:9s;  animation-delay:4.5s; }
+.particle-16 { width:8px;  height:8px;  left:20%;  top:25%; animation-duration:7s;  animation-delay:3.2s; }
+.particle-17 { width:10px; height:10px; left:60%;  top:50%; animation-duration:11s; animation-delay:0.6s; }
+.particle-18 { width:6px;  height:6px;  left:40%;  top:65%; animation-duration:13s; animation-delay:2.8s; }
+
+.about-section > .container { position: relative; z-index: 1; }
+
+/* ══════════════════════════════════════════════
+   DOCTORS SECTION
+══════════════════════════════════════════════ */
+.doctors-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(160deg, #1f3366 0%, #21cdc0 100%);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
+.doctors-section.in-view { opacity: 1; transform: translateY(0); }
+
+.doctors-section .section-eyebrow { color: var(--teal-light); background: rgba(255,255,255,0.15); }
+.doctors-section .section-heading { color: var(--white); }
+.doctors-section .section-sub { color: rgba(255,255,255,0.8); }
 
 .doctor-card {
-    border-radius: 20px !important;
-    border: 3px solid white !important;
-    overflow: hidden;
-    background: white;
-    height: 100%;
+  border-radius: var(--radius-xl) !important;
+  border: 3px solid rgba(255,255,255,0.2) !important;
+  overflow: hidden !important;
+  background: rgba(255,255,255,0.05) !important;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+  animation: scaleIn 0.7s ease-out both;
+  position: relative;
+}
+
+.doctors-section.in-view .col-lg-4:nth-child(1) .doctor-card { animation-delay: 0.1s; }
+.doctors-section.in-view .col-lg-4:nth-child(2) .doctor-card { animation-delay: 0.25s; }
+.doctors-section.in-view .col-lg-4:nth-child(3) .doctor-card { animation-delay: 0.4s; }
+
+.doctor-card:hover {
+  transform: translateY(-18px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+  border-color: rgba(255,255,255,0.5) !important;
+}
+
+.doc-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
 }
 
 .doc-img-container {
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
 }
 
 .doc-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.doctor-card:hover .doc-img {
-    transform: scale(1.1);
+.doctor-card:hover .doc-img { transform: scale(1.1); }
+
+.doc-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(29,45,100,0.85));
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1.5rem;
+  opacity: 0;
+  transition: var(--transition);
 }
+
+.doctor-card:hover .doc-overlay { opacity: 1; }
+
+.doc-appt-btn {
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transform: translateY(10px);
+  transition: var(--transition);
+}
+
+.doctor-card:hover .doc-appt-btn { transform: translateY(0); }
 
 .doc-specialization {
-    background: linear-gradient(135deg, #2d4990, #1f3366);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    padding: 1rem;
+  background: linear-gradient(135deg, rgba(29,45,100,0.95), rgba(33,205,192,0.3));
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  padding: 1.2rem;
+  gap: 4px;
+}
+
+.doc-spec-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 4px;
 }
 
 .doc-name {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .doc-education {
-    font-size: 0.9rem;
-    opacity: 0.9;
+  font-size: 0.82rem;
+  opacity: 0.85;
 }
 
-/* Services Section */
+/* ══════════════════════════════════════════════
+   SERVICES
+══════════════════════════════════════════════ */
 .services-container {
-    width: 100%;
-    padding: 4rem 0;
+  background: var(--off-white);
+  padding: 5rem 0;
 }
 
-.services-container .title {
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #3851A2;
-    text-align: center;
-    margin-bottom: 3rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Success Numbers Section */
+/* ══════════════════════════════════════════════
+   SUCCESS / STATS
+══════════════════════════════════════════════ */
 .success-numbers {
-    background-image: url('../../Assets/Images/wallpaper2.jpg');
-    width: 100%;
-    min-height: 400px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: 4rem 0;
+  background-image: url('../../Assets/Images/wallpaper2.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
 }
 
 .success-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(29,45,100,0.88), rgba(33,205,192,0.60));
+  z-index: 1;
 }
 
-.success-numbers .container {
-    position: relative;
-    z-index: 2;
+.stats-bg-text {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 15vw, 14rem);
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  z-index: 1;
+  pointer-events: none;
+  letter-spacing: 10px;
 }
+
+.success-numbers .container,
+.success-numbers .section-header { position: relative; z-index: 2; }
 
 .success-card {
-    background: rgba(56, 81, 162, 0.9) !important;
-    border: 2px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 20px !important;
-    padding: 2rem !important;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  background: rgba(255,255,255,0.08) !important;
+  border: 1.5px solid rgba(255,255,255,0.2) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 2.5rem 1.5rem !important;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.8s ease-out both;
+  cursor: default;
+}
+
+.stat-glow {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--teal);
+  top: -20px;
+  right: -20px;
+  filter: blur(30px);
+  animation: statGlow 3s ease infinite;
 }
 
 .success-card:hover {
-    transform: translateY(-10px);
-    background: rgba(33, 205, 192, 0.9) !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-12px);
+  background: rgba(33,205,192,0.25) !important;
+  border-color: var(--teal-light) !important;
+  box-shadow: 0 20px 50px rgba(33,205,192,0.25);
 }
 
 .success-card .no {
-    font-size: 2.5rem;
-    color: #fff;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--white);
+  font-weight: 900;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  line-height: 1;
 }
 
-.success-card .title {
-    font-size: 1.1rem;
-    color: #fff;
-    font-weight: 600;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+.stat-title {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
-/* FAQ Section */
-.faq-container-fluid {
-    background: linear-gradient(135deg, #21cdc0, #1bb5a8);
-    padding: 4rem 0;
+/* ══════════════════════════════════════════════
+   LOCAL SEO SECTION
+══════════════════════════════════════════════ */
+.local-seo-section {
+  padding: 5rem 0;
+  background: var(--white);
 }
+
+.local-seo-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.25;
+  margin-bottom: 1.5rem;
+}
+
+.local-seo-title span {
+  background: linear-gradient(135deg, var(--teal), var(--navy-mid));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.local-seo-text {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--text-mid);
+  margin-bottom: 1rem;
+}
+
+.local-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 1.5rem;
+}
+
+.lf-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.lf-icon { color: var(--teal); font-size: 0.95rem; flex-shrink: 0; }
+
+.map-embed-card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(33,205,192,0.2);
+}
+
+.map-placeholder {
+  background: linear-gradient(135deg, #eef5ff, #d4f8f5);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem;
+  min-height: 200px;
+}
+
+.map-pin {
+  font-size: 3rem;
+  color: var(--navy);
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+.map-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.map-text strong {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--navy);
+}
+
+.map-text span {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+}
+
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: var(--transition);
+  width: fit-content;
+}
+
+.map-btn:hover {
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+  color: var(--white);
+  transform: translateX(4px);
+}
+
+/* ══════════════════════════════════════════════
+   FAQ
+══════════════════════════════════════════════ */
+.faq-section {
+  background: linear-gradient(160deg, var(--teal-dark) 0%, var(--teal) 100%);
+  padding: 5rem 0;
+}
+
+.faq-section .section-eyebrow { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.15); }
 
 .faq-title {
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #2d4990;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 0;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
-/* Responsive Design */
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
+.footer-homepage { background: var(--navy-dark); }
 
-/* Large Desktop (1440px and above) */
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+
+/* Large (1440px+) */
 @media (min-width: 1441px) {
-    .carousel-inner-imgSlider {
-        height: 600px !important;
-    }
-    
-    .slide-title {
-        font-size: 4rem !important;
-    }
-    
-    .slide-description {
-        font-size: 1.4rem !important;
-    }
+  /* Still uses 100vh calculation — naturally taller on large screens */
 }
 
-/* Desktop (1200px - 1440px) */
-@media (max-width: 1440px) and (min-width: 1200px) {
-    .carousel-inner-imgSlider {
-        height: 500px !important;
-    }
-    
-    .mark-hospital-title {
-        font-size: 2rem;
-    }
-}
-
-/* Tablet Landscape (992px - 1199px) */
+/* Tablet Landscape (992–1199) */
 @media (max-width: 1199px) and (min-width: 992px) {
-    .carousel-inner-imgSlider {
-        height: 450px !important;
-    }
-    
-    .slide-title {
-        font-size: 2.5rem !important;
-    }
-    
-    .first-card, .second-card, .third-card {
-        height: 200px;
-    }
-    
-    .mark-hospital-title {
-        font-size: 1.8rem;
-    }
-    
-    .hospital-description {
-        font-size: 0.95rem;
-    }
+  .carousel-inner-imgSlider { height: calc(100vh - 76px) !important; }
+  .carousel-caption { padding: 3rem; }
 }
 
-/* Tablet Portrait (768px - 991px) */
-@media (max-width: 991px) and (min-width: 768px) {
-    .carousel-inner-imgSlider {
-        height: 400px !important;
-    }
-    
-    .slide-title {
-        font-size: 2.2rem !important;
-    }
-    
-    .slide-description {
-        font-size: 1rem !important;
-    }
-    
-    .card-container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .first-card, .second-card, .third-card {
-        border-radius: 20px !important;
-        height: 180px;
-        margin-bottom: 1rem;
-    }
-    
-    .first-title {
-        font-size: 1.2rem;
-    }
-    
-    .content-lines {
-        font-size: 0.85rem;
-    }
-    
-    .about-us-container {
-        margin: 3rem auto;
-    }
-    
-    .mark-hospital-title {
-        font-size: 1.6rem;
-        text-align: center;
-        margin-bottom: 1.5rem;
-    }
-    
-    .hospital-description {
-        font-size: 0.9rem;
-        text-align: center;
-    }
-    
-    .why-choose-us-card .title {
-        font-size: 1.6rem;
-    }
-    
-    .choose-us-points {
-        font-size: 0.9rem;
-    }
-    
-    .doc-info-title {
-        font-size: 2.2rem;
-    }
-    
-    .success-card {
-        height: 130px;
-        padding: 1.5rem !important;
-    }
-    
-    .success-card .no {
-        font-size: 2rem;
-    }
-    
-    .success-card .title {
-        font-size: 1rem;
-    }
-    
-    .services-container .title {
-        font-size: 2.2rem;
-    }
-    
-    .faq-title {
-        font-size: 2.2rem;
-    }
+/* Tablet Portrait (768–991) */
+@media (max-width: 991px) {
+  .carousel-inner-imgSlider { height: calc(100vh - 76px) !important; }
+  .carousel-caption { padding: 2rem; }
+  .slide-title { font-size: 2.2rem !important; }
+  .quick-bar-inner { justify-content: center; gap: 1.5rem; }
+  .quick-divider { display: none; }
+  .info-card { height: auto; min-height: 160px; }
+  .about-section { padding: 4rem 0; }
+  .mark-hospital-title { font-size: 1.9rem; text-align: center; }
+  .hospital-description { text-align: center; }
+  .about-left { text-align: center; }
+  .about-badges { justify-content: center; }
+  .local-features { grid-template-columns: 1fr; }
+  .success-numbers { background-attachment: scroll; }
 }
 
-/* Mobile Landscape (576px - 767px) */
-@media (max-width: 767px) and (min-width: 576px) {
-    .carousel-inner-imgSlider {
-        height: 300px !important;
-    }
-    
-    .slide-title {
-        font-size: 1.8rem !important;
-    }
-    
-    .slide-description {
-        font-size: 0.9rem !important;
-    }
-    
-    .card-container {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 0 1rem;
-    }
-    
-    .first-card, .second-card, .third-card {
-        border-radius: 15px !important;
-        height: 160px;
-        flex-direction: column;
-        text-align: center;
-        padding: 1rem !important;
-    }
-    
-    .first-title {
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .content-lines {
-        font-size: 0.8rem;
-    }
-    
-    .phoneNo {
-        font-size: 1rem;
-    }
-    
-    .about-us-container {
-        margin: 2rem auto;
-        padding: 1rem;
-    }
-    
-    .mark-hospital-title {
-        font-size: 1.4rem;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-    
-    .hospital-description {
-        font-size: 0.85rem;
-        text-align: center;
-    }
-    
-    .why-choose-us {
-        padding: 1rem;
-        margin-top: 2rem;
-    }
-    
-    .why-choose-us-card {
-        padding: 1.5rem;
-    }
-    
-    .why-choose-us-card .title {
-        font-size: 1.4rem;
-    }
-    
-    .choose-us-points {
-        font-size: 0.85rem;
-        margin-bottom: 0.8rem;
-    }
-    
-    .doctors-info {
-        padding: 3rem 1rem;
-    }
-    
-    .meet-doc-text {
-        font-size: 2rem;
-    }
-    
-    .doc-img-container {
-        height: 250px;
-    }
-    
-    .success-numbers {
-        background-attachment: scroll;
-        min-height: 300px;
-        padding: 2rem 0;
-    }
-    
-    .success-card {
-        height: 120px;
-        padding: 1rem !important;
-        margin-bottom: 1rem;
-    }
-    
-    .success-card .no {
-        font-size: 1.8rem;
-    }
-    
-    .success-card .title {
-        font-size: 0.9rem;
-    }
-    
-    .services-container .title {
-        font-size: 2rem;
-    }
-    
-    .faq-title {
-        font-size: 2rem;
-    }
+/* Mobile Landscape (576–767) */
+@media (max-width: 767px) {
+  /* On mobile the header shrinks to 64px + 4px accent = 68px */
+  .carousel-inner-imgSlider { height: calc(100vh - 68px) !important; }
+  .carousel-caption { padding: 1.5rem; }
+  .slide-title { font-size: 1.8rem !important; }
+  .slide-description { font-size: 0.95rem !important; }
+  .slide-cta-btn { padding: 11px 22px; font-size: 0.9rem; margin-top: 1.2rem; }
+  .quick-item .qb-label { display: none; }
+  .mark-hospital-title { font-size: 1.6rem; }
+  .doctors-section { padding: 4rem 1rem; }
+  .success-card { padding: 1.8rem 1rem !important; }
+  .local-features { grid-template-columns: 1fr; }
 }
 
-/* Mobile Portrait (up to 575px) */
+/* Mobile Portrait (≤575) */
 @media (max-width: 575px) {
-    .carousel-inner-imgSlider {
-        height: 250px !important;
-    }
-    
-    .carousel-caption {
-        display: none !important;
-    }
-    
-    .slide-title {
-        font-size: 1.5rem !important;
-    }
-    
-    .slide-description {
-        font-size: 0.8rem !important;
-    }
-    
-    .card-container {
-        flex-direction: column;
-        gap: 0.8rem;
-        padding: 0 0.5rem;
-    }
-    
-    .first-card, .second-card, .third-card {
-        border-radius: 15px !important;
-        height: 140px;
-        flex-direction: column;
-        text-align: center;
-        padding: 0.8rem !important;
-    }
-    
-    .icon-container {
-        padding: 10px;
-        margin-bottom: 0.5rem;
-    }
-    
-    .card-icon {
-        width: 40px !important;
-        height: 40px !important;
-    }
-    
-    .first-title {
-        font-size: 1rem;
-        margin-bottom: 0.3rem;
-    }
-    
-    .content-lines {
-        font-size: 0.75rem;
-        line-height: 1.3;
-    }
-    
-    .phoneNo {
-        font-size: 0.9rem;
-    }
-    
-    .timetable-btn, .book-appo-btn {
-        font-size: 0.75rem !important;
-        padding: 6px 12px !important;
-    }
-    
-    .about-us-container {
-        margin: 1.5rem auto;
-        padding: 1rem 0.5rem;
-    }
-    
-    .mark-hospital-title {
-        font-size: 1.2rem;
-        text-align: center;
-        margin-bottom: 1rem;
-        line-height: 1.4;
-    }
-    
-    .hospital-description {
-        font-size: 0.8rem;
-        text-align: center;
-        line-height: 1.5;
-    }
-    
-    .why-choose-us {
-        padding: 0.5rem;
-        margin-top: 1.5rem;
-    }
-    
-    .why-choose-us-card {
-        padding: 1rem;
-    }
-    
-    .why-choose-us-card .title {
-        font-size: 1.2rem;
-    }
-    
-    .choose-us-points {
-        font-size: 0.8rem;
-        margin-bottom: 0.6rem;
-        align-items: flex-start;
-    }
-    
-    .check-icon {
-        font-size: 1rem;
-        margin-top: 1px;
-    }
-    
-    .doctors-info {
-        padding: 2rem 0.5rem;
-    }
-    
-    .meet-doc-text {
-        font-size: 1.6rem;
-    }
-    
-    .doc-img-container {
-        height: 200px;
-    }
-    
-    .doc-specialization {
-        height: 80px;
-        padding: 0.5rem;
-    }
-    
-    .doc-name {
-        font-size: 1.1rem;
-    }
-    
-    .doc-education {
-        font-size: 0.8rem;
-    }
-    
-    .success-numbers {
-        background-attachment: scroll;
-        min-height: 250px;
-        padding: 2rem 0.5rem;
-    }
-    
-    .success-card {
-        height: 100px;
-        padding: 0.8rem !important;
-        margin-bottom: 0.8rem;
-    }
-    
-    .success-card .no {
-        font-size: 1.5rem;
-    }
-    
-    .success-card .title {
-        font-size: 0.8rem;
-    }
-    
-    .services-container {
-        padding: 2rem 0;
-    }
-    
-    .services-container .title {
-        font-size: 1.6rem;
-        margin-bottom: 2rem;
-    }
-    
-    .faq-container-fluid {
-        padding: 2rem 0;
-    }
-    
-    .faq-title {
-        font-size: 1.6rem;
-        margin-bottom: 2rem;
-    }
+  .carousel-inner-imgSlider { height: calc(100vh - 68px) !important; }
+  .carousel-caption { padding: 1.2rem 1.5rem; }
+  .slide-badge { font-size: 0.72rem; padding: 4px 12px; }
+  .slide-title { font-size: 1.5rem !important; margin-bottom: 0.6rem !important; }
+  .slide-description { font-size: 0.82rem !important; display: none; }
+  .slide-cta-btn { margin-top: 0.8rem; padding: 9px 18px; font-size: 0.82rem; }
+  .hero-quick-bar { display: none; }
+  .info-cards-section { padding: 1.5rem 0; }
+  .info-card { height: auto; min-height: 140px; border-radius: 15px !important; }
+  .first-title { font-size: 1rem; }
+  .content-lines { font-size: 0.78rem; }
+  .phoneNo { font-size: 0.95rem; }
+  .card-icon { width: 44px !important; height: 44px !important; }
+  .about-section { padding: 3rem 0; }
+  .mark-hospital-title { font-size: 1.4rem; }
+  .hospital-description { font-size: 0.88rem; }
+  .why-choose-us-card { padding: 1.5rem; }
+  .why-title { font-size: 1.4rem; }
+  .choose-us-points { font-size: 0.85rem; }
+  .doctors-section { padding: 3rem 0.5rem; }
+  .doc-img-container { height: 220px; }
+  .doc-name { font-size: 1.1rem; }
+  .doc-education { font-size: 0.78rem; }
+  .success-card { padding: 1.5rem 0.8rem !important; }
+  .success-card .no { font-size: 1.8rem; }
+  .stat-title { font-size: 0.82rem; }
+  .local-seo-title { font-size: 1.4rem; }
+  .faq-title { font-size: 1.6rem; }
+  .map-placeholder { flex-direction: column; text-align: center; padding: 2rem; }
+  .carousel-control-prev,
+  .carousel-control-next { width: 40px; }
 }
 
-/* Extra animations and hover effects */
-.first-card::before, .second-card::before, .third-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.5s;
-}
-
-.first-card:hover::before, .second-card:hover::before, .third-card:hover::before {
-    left: 100%;
-}
-
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Loading animations */
-.card, .doctor-card, .success-card {
-    opacity: 0;
-    animation: fadeIn 0.8s ease-out forwards;
-}
-
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-.card:nth-child(4) { animation-delay: 0.4s; }
-
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

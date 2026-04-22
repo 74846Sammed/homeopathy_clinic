@@ -9,59 +9,42 @@ import migraine from '../../Assets/Images/Migraine.jpg';
 import pcod from '../../Assets/Images/pcod2.jpg';
 import '../Services/Services.css';
 
+const servicesList = [
+    { img: asthmaImg,   name: 'Asthma',      alt: 'Asthma treatment homeopathy' },
+    { img: allergyImg,  name: 'Allergy',     alt: 'Allergy relief homeopathy' },
+    { img: backPainImg, name: 'Back Pain',   alt: 'Back pain treatment homeopathy' },
+    { img: hailfallImg, name: 'Hair Fall',   alt: 'Hair fall treatment homeopathy' },
+    { img: migraine,    name: 'Migraine',    alt: 'Migraine treatment homeopathy' },
+    { img: gynecology,  name: 'Gynecology',  alt: 'Gynecology homeopathy clinic' },
+    { img: infertility, name: 'Infertility', alt: 'Infertility treatment homeopathy' },
+    { img: pcod,        name: 'PCOD',        alt: 'PCOD treatment homeopathy' },
+];
+
 function Services() {
     return (
-        <div className='services-card-container container'>
-            <div className='card col-md-3'>
-                <div className='card-img-container'>
-                    <img className='service-img' src={asthmaImg}/>
-                </div>
-                <div className='service-name'>Asthma</div>
+        <section className="services-section" aria-label="Our Services">
+            <div className="services-grid">
+                {servicesList.map((service, index) => (
+                    <article
+                        className="service-card"
+                        key={service.name}
+                        style={{ animationDelay: `${index * 0.08}s` }}
+                    >
+                        <div className="service-card__img-wrap">
+                            <img
+                                className="service-card__img"
+                                src={service.img}
+                                alt={service.alt}
+                                loading="lazy"
+                            />
+                            <div className="service-card__overlay" />
+                        </div>
+                        <div className="service-card__name">{service.name}</div>
+                    </article>
+                ))}
             </div>
-            <div className='card col-md-3'>
-                <div className='card-img-container'>
-                    <img className='service-img' src={allergyImg}/>
-                </div>
-                <div className='service-name'>Allergy</div>
-            </div>
-            <div className='card col-md-3'>
-                <div className='card-img-container'>
-                    <img className='service-img' src={backPainImg}/>
-                </div>
-                <div className='service-name'>Back Pain</div>
-            </div>
-            <div className='card col-md-3'>
-                <div className='card-img-container'>
-                    <img className='service-img' src={hailfallImg}/>
-                </div>
-                <div className='service-name'>Hair Fall</div>
-            </div>
-            {/* <div className='card col-md-3'>
-                <div className='card-img-container'>
-                    <img className='service-img' src={migraine}/>
-                </div>
-                <div className='service-name'>Migraine</div>
-            </div>
-            <div className='card col-md-3'>
-                <div className='card-img-container'>
-                    <img className='service-img' src={gynecology}/>
-                </div>
-                <div className='service-name'>Gynecology</div>
-            </div>
-            <div className='card col-md-3'>
-                <div className='card-img-container'>
-                    <img className='service-img' src={infertility}/>
-                </div>
-                <div className='service-name'>Infertility</div>
-            </div>
-            <div className='card col-md-3'>
-                <div className='card-img-container'>
-                    <img className='service-img' src={pcod}/>
-                </div>
-                <div className='service-name'>PCOD</div>
-            </div> */}
-        </div>
-    )
+        </section>
+    );
 }
 
-export default Services
+export default Services;

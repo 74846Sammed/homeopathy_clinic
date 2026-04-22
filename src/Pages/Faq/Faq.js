@@ -1,203 +1,159 @@
 import React, { useState } from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { styled } from '@mui/material/styles';
+import './Faq.css';
 
-// Custom styled components for better design
-const StyledAccordion = styled(Accordion)(({ theme }) => ({
-    marginBottom: '20px',
-    borderRadius: '15px !important',
-    border: '2px solid rgba(45, 73, 144, 0.1)',
-    boxShadow: '0 8px 25px rgba(0, 0, 0, 0.08)',
-    transition: 'all 0.3s ease',
-    background: 'linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%)',
-    overflow: 'hidden',
-    
-    '&:hover': {
-        transform: 'translateY(-5px)',
-        boxShadow: '0 15px 40px rgba(0, 0, 0, 0.12)',
-        border: '2px solid rgba(33, 205, 192, 0.3)',
+const faqData = [
+    {
+        id: 'faq-1',
+        number: '01',
+        question: 'What is homeopathy and how does it work?',
+        answer: 'Homeopathy is a natural system of medicine based on the principle of "like cures like." It uses highly diluted natural substances to stimulate the body\'s own healing process. This gentle approach works by triggering the body\'s natural defense mechanisms to restore balance and promote healing from within.',
+        tag: 'Basics'
     },
-    
-    '&.Mui-expanded': {
-        transform: 'translateY(-2px)',
-        boxShadow: '0 12px 35px rgba(0, 0, 0, 0.1)',
-        border: '2px solid #21cdc0',
+    {
+        id: 'faq-2',
+        number: '02',
+        question: 'Is homeopathy safe for children and elderly people?',
+        answer: 'Yes, homeopathic remedies are completely safe, gentle, and free from side effects — making them ideal for all age groups, including infants and senior citizens. The natural ingredients and ultra-diluted preparations ensure no toxic effects or drug interactions, making it one of the safest medical systems available.',
+        tag: 'Safety'
     },
-    
-    '&:before': {
-        display: 'none',
+    {
+        id: 'faq-3',
+        number: '03',
+        question: 'Can homeopathy treat chronic diseases?',
+        answer: 'Absolutely. Homeopathy has shown excellent results in managing and curing various chronic conditions such as asthma, arthritis, skin disorders, migraine, thyroid issues, diabetes, hypertension, and autoimmune disorders. Our holistic approach addresses the root cause rather than just suppressing symptoms.',
+        tag: 'Treatment'
     },
-}));
+    {
+        id: 'faq-4',
+        number: '04',
+        question: 'How long does it take for homeopathy to show results?',
+        answer: 'The response time varies depending on the condition and individual constitution. Acute issues may improve within hours to days, while chronic problems may take several weeks to months for complete healing. Homeopathy works on the root cause, so lasting results take time but are more permanent.',
+        tag: 'Timeline'
+    },
+    {
+        id: 'faq-5',
+        number: '05',
+        question: 'Can I take homeopathy along with other medications?',
+        answer: 'Yes, homeopathy can safely be taken alongside conventional medicines without any interactions. However, it\'s always best to consult your homeopathic doctor for proper guidance and to plan a gradual transition if you wish to reduce dependency on conventional medications.',
+        tag: 'Safety'
+    },
+    {
+        id: 'faq-6',
+        number: '06',
+        question: 'What should I expect during my first consultation?',
+        answer: 'During your first visit, our doctor will conduct a detailed consultation lasting 60–90 minutes. We\'ll discuss your medical history, current symptoms, lifestyle, emotional state, and any triggers. This comprehensive approach helps us select the most suitable remedy for your individual constitution.',
+        tag: 'Consultation'
+    }
+];
 
-const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
-    background: 'linear-gradient(135deg, #2d4990 0%, #3851A2 100%)',
-    color: '#ffffff',
-    fontWeight: '600',
-    minHeight: '70px',
-    padding: '0 24px',
-    borderRadius: '15px 15px 0 0',
-    transition: 'all 0.3s ease',
-    
-    '&:hover': {
-        background: 'linear-gradient(135deg, #21cdc0 0%, #1bb5a8 100%)',
-    },
-    
-    '&.Mui-expanded': {
-        background: 'linear-gradient(135deg, #21cdc0 0%, #1bb5a8 100%)',
-        minHeight: '70px',
-    },
-    
-    '& .MuiAccordionSummary-content': {
-        margin: '16px 0',
-        
-        '&.Mui-expanded': {
-            margin: '16px 0',
-        },
-    },
-    
-    '& .MuiAccordionSummary-expandIconWrapper': {
-        color: '#ffffff',
-        transition: 'transform 0.3s ease',
-        
-        '&.Mui-expanded': {
-            transform: 'rotate(180deg)',
-        },
-    },
-}));
-
-const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
-    padding: '24px',
-    background: '#ffffff',
-    color: '#555',
-    fontSize: '1rem',
-    lineHeight: '1.7',
-    borderRadius: '0 0 15px 15px',
-    
-    '&::before': {
-        content: '""',
-        position: 'absolute',
-        top: '0',
-        left: '24px',
-        right: '24px',
-        height: '2px',
-        background: 'linear-gradient(90deg, #21cdc0, #2d4990)',
-    },
-}));
-
-function Faq() {
-    const [expandedPanel, setExpandedPanel] = useState(false);
-
-    const handleChange = (panel) => (event, isExpanded) => {
-        setExpandedPanel(isExpanded ? panel : false);
-    };
-
-    const faqData = [
-        {
-            id: 'panel1',
-            question: '1. What is homeopathy and how does it work?',
-            answer: 'Homeopathy is a natural system of medicine based on the principle of "like cures like." It uses highly diluted natural substances to stimulate the body\'s own healing process. This gentle approach works by triggering the body\'s natural defense mechanisms to restore balance and promote healing from within.'
-        },
-        {
-            id: 'panel2',
-            question: '2. Is homeopathy safe for children and elderly people?',
-            answer: 'Yes, homeopathic remedies are completely safe, gentle, and free from side effects—making them ideal for all age groups, including infants and senior citizens. The natural ingredients and ultra-diluted preparations ensure that there are no toxic effects or drug interactions, making it one of the safest medical systems available.'
-        },
-        {
-            id: 'panel3',
-            question: '3. Can homeopathy treat chronic diseases?',
-            answer: 'Absolutely. Homeopathy has shown excellent results in managing and curing various chronic conditions such as asthma, arthritis, skin disorders, migraine, thyroid issues, diabetes, hypertension, and autoimmune disorders. Our holistic approach addresses the root cause rather than just suppressing symptoms.'
-        },
-        {
-            id: 'panel4',
-            question: '4. How long does it take for homeopathy to show results?',
-            answer: 'The response time varies depending on the condition and individual constitution. Acute issues may improve within hours to days, while chronic problems may take several weeks to months for complete healing. Homeopathy works on the root cause, so lasting results take time but are more permanent.'
-        },
-        {
-            id: 'panel5',
-            question: '5. Can I take homeopathy along with other medications?',
-            answer: 'Yes, homeopathy can safely be taken alongside conventional medicines without any interactions. However, it\'s always best to consult your homeopathic doctor for proper guidance and to plan a gradual transition if you wish to reduce dependency on conventional medications.'
-        },
-        {
-            id: 'panel6',
-            question: '6. What should I expect during my first consultation?',
-            answer: 'During your first visit, our doctor will conduct a detailed consultation lasting 60-90 minutes. We\'ll discuss your medical history, current symptoms, lifestyle, emotional state, and any triggers. This comprehensive approach helps us select the most suitable remedy for your individual constitution.'
-        }
-    ];
-
+function FaqItem({ faq, isOpen, onToggle }) {
     return (
-        <div className='faq-component'>
-            <div className='container'>
-                <div className='row justify-content-center'>
-                    <div className='col-lg-8 col-md-10 col-12'>
-                        <div className='faq-intro text-center mb-4'>
-                            <p className='faq-description animate-fade-in'>
-                                Get answers to the most commonly asked questions about our homeopathic treatments and services.
-                            </p>
-                        </div>
-                        
-                        <div className='faq-accordion-container'>
-                            {faqData.map((faq, index) => (
-                                <div 
-                                    key={faq.id} 
-                                    className='faq-item-wrapper animate-faq-item'
-                                    style={{ animationDelay: `${index * 0.1}s` }}
-                                >
-                                    <StyledAccordion 
-                                        expanded={expandedPanel === faq.id} 
-                                        onChange={handleChange(faq.id)}
-                                        elevation={0}
-                                    >
-                                        <StyledAccordionSummary
-                                            expandIcon={<ExpandMoreIcon />}
-                                            aria-controls={`${faq.id}-content`}
-                                            id={`${faq.id}-header`}
-                                        >
-                                            <Typography 
-                                                component="span" 
-                                                sx={{ 
-                                                    fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
-                                                    fontWeight: 600,
-                                                    lineHeight: 1.4
-                                                }}
-                                            >
-                                                {faq.question}
-                                            </Typography>
-                                        </StyledAccordionSummary>
-                                        <StyledAccordionDetails>
-                                            <Typography 
-                                                sx={{ 
-                                                    fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },
-                                                    lineHeight: 1.7,
-                                                    color: '#555'
-                                                }}
-                                            >
-                                                {faq.answer}
-                                            </Typography>
-                                        </StyledAccordionDetails>
-                                    </StyledAccordion>
-                                </div>
-                            ))}
-                        </div>
-                        
-                        {/* <div className='faq-contact-section text-center mt-5'>
-                            <div className='faq-contact-card animate-fade-in-up'>
-                                <h4 className='contact-title'>Still have questions?</h4>
-                                <p className='contact-description'>
-                                    Our medical team is here to help you understand how homeopathy can benefit your health.
-                                </p>
-                                <button className='contact-btn'>
-                                    Contact Our Experts
-                                </button>
-                            </div>
-                        </div> */}
-                    </div>
+        <div
+            className={`faq-item ${isOpen ? 'faq-item--open' : ''}`}
+            itemScope
+            itemType="https://schema.org/Question"
+        >
+            <button
+                className="faq-trigger"
+                onClick={onToggle}
+                aria-expanded={isOpen}
+                aria-controls={`${faq.id}-answer`}
+                id={`${faq.id}-trigger`}
+            >
+                <span className="faq-trigger__num" aria-hidden="true">{faq.number}</span>
+                <span className="faq-trigger__text" itemProp="name">{faq.question}</span>
+                <span className="faq-trigger__tag" aria-hidden="true">{faq.tag}</span>
+                <span className="faq-trigger__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+
+            <div
+                id={`${faq.id}-answer`}
+                role="region"
+                aria-labelledby={`${faq.id}-trigger`}
+                className="faq-body"
+                style={{ '--faq-max-h': isOpen ? '400px' : '0px' }}
+                itemScope
+                itemType="https://schema.org/Answer"
+            >
+                <div className="faq-body__inner" itemProp="text">
+                    <div className="faq-body__bar" aria-hidden="true" />
+                    <p className="faq-body__text">{faq.answer}</p>
                 </div>
             </div>
         </div>
+    );
+}
+
+function Faq() {
+    const [openId, setOpenId] = useState('faq-1');
+
+    const toggle = (id) => setOpenId(prev => prev === id ? null : id);
+
+    return (
+        <section
+            className="faq-section"
+            aria-label="Frequently Asked Questions"
+            itemScope
+            itemType="https://schema.org/FAQPage"
+        >
+            {/* Background decoration */}
+            <div className="faq-bg-grid" aria-hidden="true" />
+            <div className="faq-bg-glow faq-bg-glow--a" aria-hidden="true" />
+            <div className="faq-bg-glow faq-bg-glow--b" aria-hidden="true" />
+
+            <div className="faq-inner">
+                {/* Left column: heading + description */}
+                <aside className="faq-aside">
+                    <span className="faq-eyebrow">FAQ</span>
+                    <h2 className="faq-title">
+                        Common <em>Questions</em><br />Answered
+                    </h2>
+                    <p className="faq-desc">
+                        Get answers to the most frequently asked questions about our homeopathic treatments and services.
+                    </p>
+
+                    <div className="faq-stat-row">
+                        <div className="faq-stat">
+                            <strong className="faq-stat__num">15+</strong>
+                            <span className="faq-stat__label">Years Experience</span>
+                        </div>
+                        <div className="faq-stat">
+                            <strong className="faq-stat__num">5000+</strong>
+                            <span className="faq-stat__label">Patients Healed</span>
+                        </div>
+                        <div className="faq-stat">
+                            <strong className="faq-stat__num">100%</strong>
+                            <span className="faq-stat__label">Natural Treatment</span>
+                        </div>
+                    </div>
+
+                    {/* <a href="#contact" className="faq-cta" aria-label="Contact our homeopathy experts">
+                        Still have questions? Talk to us →
+                    </a> */}
+                </aside>
+
+                {/* Right column: accordion */}
+                <div className="faq-list">
+                    {faqData.map((faq, i) => (
+                        <div
+                            key={faq.id}
+                            className="faq-item-wrap"
+                            style={{ animationDelay: `${i * 0.07}s` }}
+                        >
+                            <FaqItem
+                                faq={faq}
+                                isOpen={openId === faq.id}
+                                onToggle={() => toggle(faq.id)}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 }
 
