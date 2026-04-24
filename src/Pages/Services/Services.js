@@ -1,10 +1,10 @@
 import React from 'react';
-import asthmaImg from '../../Assets/Images/asthmaImg.avif';
+import asthmaImg from '../../Assets/Images/asthmaImg.jpg';
 import backPainImg from '../../Assets/Images/backpainImg.jpg';
 import allergyImg from '../../Assets/Images/allergyImg.jpg';
 import hailfallImg from '../../Assets/Images/hairlossImg.jpg';
 import infertility from '../../Assets/Images/Infertility.jpg';
-import gynecology from '../../Assets/Images/Gynecology.jpeg';
+import gynecology from '../../Assets/Images/Gynecology2.jpg';
 import migraine from '../../Assets/Images/Migraine.jpg';
 import pcod from '../../Assets/Images/pcod2.jpg';
 import '../Services/Services.css';
