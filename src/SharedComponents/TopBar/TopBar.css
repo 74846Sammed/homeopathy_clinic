@@ -1,0 +1,185 @@
+/* ── topbar.css ─────────────────────────────────────────── */
+
+/* ── Root ──────────────────────────────────────────────── */
+.tb-root {
+  height: 64px;
+  background: #fff;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  flex-shrink: 0;
+}
+
+/* ── Hamburger — hidden on desktop/tablet ──────────────── */
+.tb-hamburger {
+  display: none;           /* shown only in mobile breakpoint below */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  color: #0F172A;
+  flex-shrink: 0;
+}
+
+/* ── Search Bar ────────────────────────────────────────── */
+.tb-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 8px 14px;
+  max-width: 300px;
+  flex: 1;
+}
+
+.tb-search input {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 13px;
+  color: #0F172A;
+  flex: 1;
+  width: 100%;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.tb-search input::placeholder { color: #94A3B8; }
+
+/* ── Flexible Spacer ───────────────────────────────────── */
+.tb-spacer { flex: 1; }
+
+/* ── Date / Time Label ─────────────────────────────────── */
+.tb-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #64748B;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Notification Bell ─────────────────────────────────── */
+.tb-bell-wrap { position: relative; flex-shrink: 0; }
+
+.tb-bell-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 9px 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.tb-bell-btn:hover { background: #F1F5F9; }
+
+.tb-bell-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 7px;
+  height: 7px;
+  background: #EF4444;
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+}
+
+/* ── Profile Chip ──────────────────────────────────────── */
+.tb-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+.tb-profile:hover { background: #F1F5F9; }
+
+.tb-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #06B6D4, #8B5CF6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.tb-profile-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tb-profile-role {
+  font-size: 11px;
+  color: #94A3B8;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+/* ════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════ */
+
+/* ── Laptop  ≤1280px ───────────────────────────────────── */
+@media (max-width: 1280px) {
+  .tb-search { max-width: 240px; }
+}
+
+/* ── Tablet  ≤1024px ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  .tb-root   { padding: 0 16px; gap: 10px; }
+  .tb-search { max-width: 200px; }
+
+  /* Collapse profile chip to avatar-only */
+  .tb-profile-name,
+  .tb-profile-role { display: none; }
+  .tb-profile      { padding: 7px; }
+
+  /* Hide date on tablet to save space */
+  .tb-date { display: none; }
+}
+
+/* ── Mobile  ≤768px ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .tb-root { padding: 0 12px; gap: 8px; height: 56px; }
+
+  /* Show hamburger and give it correct flex layout */
+  .tb-hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hide search and date on mobile */
+  .tb-search { display: none !important; }
+  .tb-date   { display: none !important; }
+}
+
+/* ── Small Mobile  ≤480px ──────────────────────────────── */
+@media (max-width: 480px) {
+  .tb-root    { padding: 0 10px; gap: 6px; height: 52px; }
+  .tb-profile { padding: 6px; }
+  .tb-avatar  { width: 26px; height: 26px; font-size: 10px; }
+}

@@ -10,7 +10,8 @@ const navItems = [
   { name: 'Contact', path: '/contact_us', ariaLabel: "Contact Mark's Hospital" },
 ];
 
-function Header() {
+/* ── Accept onBookAppointment prop to open the modal ── */
+function Header({ onBookAppointment }) {
   const navigate    = useNavigate();
   const location    = useLocation();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -42,12 +43,15 @@ function Header() {
     setMobileOpen(false);
   };
 
+  /* ── Open modal handler ── */
+  const handleBookAppointment = (e) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    if (onBookAppointment) onBookAppointment();
+  };
+
   return (
     <>
-      {/*
-        SEO: JSON-LD structured data helps Google display rich results
-        for the hospital in Knowledge Panel / local search.
-      */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -61,12 +65,10 @@ function Header() {
         }}
       />
 
-      {/* ── semantic <header> tag signals page banner to crawlers ── */}
       <header
         className={`mh-header${scrolled ? ' mh-header--scrolled' : ''}`}
         role="banner"
       >
-        {/* decorative top accent stripe */}
         <div className="mh-accent-bar" aria-hidden="true" />
 
         <div className="mh-inner">
@@ -79,11 +81,6 @@ function Header() {
             onClick={(e) => { e.preventDefault(); handleTabClick(navItems[0]); }}
           >
             <div className="mh-logo-wrap">
-              {/*
-                width/height + loading="eager" + fetchpriority="high" tells
-                the browser to treat this as an LCP candidate → better Core
-                Web Vitals → better SEO ranking.
-              */}
               <img
                 src={logo}
                 alt="Mark's Hospital logo"
@@ -95,7 +92,6 @@ function Header() {
               />
               <div className="mh-logo-ring" aria-hidden="true" />
             </div>
-
             <span className="mh-brand-text">
               <span className="mh-brand-name">Mark's Hospital</span>
               <span className="mh-brand-tagline">Excellence in Healthcare</span>
@@ -103,10 +99,6 @@ function Header() {
           </a>
 
           {/* ────── Desktop Navigation ────── */}
-          {/*
-            <nav> + <ul> hierarchy is the gold-standard HTML structure.
-            aria-label differentiates multiple <nav> landmarks for screen readers.
-          */}
           <nav className="mh-nav" aria-label="Main navigation">
             <ul role="list">
               {navItems.map((item, idx) => (
@@ -126,12 +118,12 @@ function Header() {
             </ul>
           </nav>
 
-          {/* ────── CTA Button (desktop) ────── */}
+          {/* ────── CTA Button (desktop) — opens modal ────── */}
           <a
-            href="/contact_us"
+            href="#book"
             className="mh-cta"
             aria-label="Book an appointment at Mark's Hospital"
-            onClick={(e) => { e.preventDefault(); handleTabClick(navItems[3]); }}
+            onClick={handleBookAppointment}
           >
             <span>Book Appointment</span>
             <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" width="18" height="18">
@@ -145,7 +137,7 @@ function Header() {
             </svg>
           </a>
 
-          {/* ────── Hamburger (mobile / tablet) ────── */}
+          {/* ────── Hamburger ────── */}
           <button
             className={`mh-burger${mobileOpen ? ' mh-burger--open' : ''}`}
             aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -194,11 +186,12 @@ function Header() {
           ))}
         </ul>
 
+        {/* ── Mobile drawer CTA — opens modal ── */}
         <a
-          href="/contact_us"
+          href="#book"
           className="mh-drawer-cta"
           tabIndex={mobileOpen ? 0 : -1}
-          onClick={(e) => { e.preventDefault(); handleTabClick(navItems[3]); }}
+          onClick={handleBookAppointment}
         >
           Book Appointment
         </a>

@@ -15,10 +15,10 @@ import Faq from '../Faq/Faq';
 import Services from '../Services/Services';
 import FeedBack from '../Feedback/FeedBack';
 import Footer from '../../SharedComponents/Footer/Footer';
+import BookAppointment from '../BookAppointmentModel/BookAppointmentModel';
 
 /* ─────────────────────────────────────────────
    LOCAL BUSINESS SCHEMA — Core SEO Power
-   Signals Google: name, geo-coords, city, area
 ───────────────────────────────────────────── */
 const LOCAL_BUSINESS_SCHEMA = {
   "@context": "https://schema.org",
@@ -117,6 +117,7 @@ function useInView(threshold = 0.2) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
+    window.scrollTo(0, 0);
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setInView(true); },
       { threshold }
@@ -159,7 +160,14 @@ function FloatingParticles() {
 function HomePage() {
   const [statsRef, statsInView] = useInView(0.3);
   const [aboutRef, aboutInView] = useInView(0.2);
-  const [docsRef, docsInView] = useInView(0.2);
+  const [docsRef, docsInView]   = useInView(0.2);
+
+  // ── Modal state ──────────────────────────────────────────
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal  = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  // ─────────────────────────────────────────────────────────
 
   /* Inject JSON-LD Schema scripts into <head> */
   useEffect(() => {
@@ -209,7 +217,7 @@ function HomePage() {
 
   return (
     <>
-      {/* ── Hidden SEO Text (screen-reader + crawlers) ── */}
+      {/* ── Hidden SEO Text ── */}
       <div className="seo-hidden" aria-hidden="false">
         <span>Best Homeopathy Hospital in Ichalkaranji</span>
         <span>Top Homeopathic Doctor Kolhapur District</span>
@@ -217,18 +225,17 @@ function HomePage() {
         <span>Classical Homeopathy Treatment Maharashtra</span>
       </div>
 
+      {/* ── Book Appointment Modal ── */}
+      <BookAppointment isOpen={isModalOpen} onClose={closeModal} />
+
       <main itemScope itemType="https://schema.org/MedicalBusiness">
         <meta itemProp="name" content="Mark Hospital" />
         <meta itemProp="medicalSpecialty" content="Homeopathy" />
 
         {/* ── HEADER ── */}
-        <Header />
+        <Header onBookAppointment={openModal} />
 
-        {/* ═══ HERO SECTION ═══
-            FIX: Removed marginTop: '70px' — body already has padding-top
-            from Header.css (calc(72px header + 4px accent) = 76px).
-            Adding double offset was causing the white gap.
-        */}
+        {/* ═══ HERO SECTION ═══ */}
         <section className="hero-section" aria-label="Hero Banner">
           <div
             id="carouselExampleCaptions"
@@ -267,13 +274,15 @@ function HomePage() {
                     <span className="slide-badge">{badge}</span>
                     <h1 className="slide-title">{title}</h1>
                     <p className="slide-description">{sub}</p>
-                    <button className="slide-cta-btn">{cta} <FaArrowRight /></button>
+                    {/* ── Opens modal ── */}
+                    <button className="slide-cta-btn" onClick={openModal}>
+                      {cta} <FaArrowRight />
+                    </button>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* FIX: Carousel controls now sit above overlay via z-index in CSS */}
             <button
               className="carousel-control-prev"
               type="button"
@@ -327,15 +336,56 @@ function HomePage() {
           <div className="container">
             <div className='row g-4'>
               {[
-                { icon: 'https://img.icons8.com/plasticine/100/phone.png', alt: 'emergency phone', cls: 'first-card', title: 'Emergency Cases', body: 'Our reception is available 6 days a week for general and medical enquiries.', extra: <div className='phoneNo mt-2' itemProp="telephone">+91 1234567890</div> },
-                { icon: 'https://img.icons8.com/3d-fluency/94/paste.png', alt: 'timetable', cls: 'second-card', title: 'Doctors Timetable', body: 'Qualified doctors available six days a week — view our schedule.', extra: <Button className='timetable-btn animated-btn mt-2' variant='contained'>View Timetable<FaArrowRight className="ms-2" /></Button> },
-                { icon: 'https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-hospital-nursing-flaticons-flat-flat-icons-2.png', alt: 'hospital hours', cls: 'third-card', title: 'Opening Hours', body: null, extra: <><div className='content-lines mt-2'>Mon–Fri: 8:00 am – 7:00 pm</div><div className='content-lines'>Saturday: 9:00 am – 10:00 pm</div><div className='content-lines'>Sunday: Weekly Off</div><Button className='book-appo-btn animated-btn mt-2' variant='contained'>Book Appointment<FaArrowRight className="ms-2" /></Button></> },
+                {
+                  icon: 'https://img.icons8.com/plasticine/100/phone.png',
+                  alt: 'emergency phone',
+                  cls: 'first-card',
+                  title: 'Emergency Cases',
+                  body: 'Our reception is available 6 days a week for general and medical enquiries.',
+                  extra: <div className='phoneNo mt-2' itemProp="telephone">+91 1234567890</div>
+                },
+                {
+                  icon: 'https://img.icons8.com/3d-fluency/94/paste.png',
+                  alt: 'timetable',
+                  cls: 'second-card',
+                  title: 'Doctors Timetable',
+                  body: 'Qualified doctors available six days a week — view our schedule.',
+                  extra: (
+                    <Button className='timetable-btn animated-btn mt-2' variant='contained'>
+                      View Timetable<FaArrowRight className="ms-2" />
+                    </Button>
+                  )
+                },
+                {
+                  icon: 'https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-hospital-nursing-flaticons-flat-flat-icons-2.png',
+                  alt: 'hospital hours',
+                  cls: 'third-card',
+                  title: 'Opening Hours',
+                  body: null,
+                  extra: (
+                    <>
+                      <div className='content-lines mt-2'>Mon–Fri: 8:00 am – 7:00 pm</div>
+                      <div className='content-lines'>Saturday: 9:00 am – 10:00 pm</div>
+                      <div className='content-lines'>Sunday: Weekly Off</div>
+                      {/* ── Opens modal ── */}
+                      <Button
+                        className='book-appo-btn animated-btn mt-2'
+                        variant='contained'
+                        onClick={openModal}
+                      >
+                        Book Appointment<FaArrowRight className="ms-2" />
+                      </Button>
+                    </>
+                  )
+                },
               ].map(({ icon, alt, cls, title, body, extra }, i) => (
                 <div key={i} className='col-lg-4 col-md-12'>
                   <div className={`card info-card ${cls} d-flex flex-row p-3`}>
                     <div className="card-shine" />
                     <div className='col-3 d-flex justify-content-center align-items-center'>
-                      <div className="icon-container"><img width="64" height="64" src={icon} alt={alt} className="card-icon" /></div>
+                      <div className="icon-container">
+                        <img width="64" height="64" src={icon} alt={alt} className="card-icon" />
+                      </div>
                     </div>
                     <div className='col-9 d-flex flex-column justify-content-center'>
                       <div className='first-title'>{title}</div>
@@ -424,7 +474,10 @@ function HomePage() {
                     <div className='doc-img-container'>
                       <img className='doc-img' src={docImg} alt={`${name} – Homeopathy Doctor Ichalkaranji`} loading="lazy" itemProp="image" />
                       <div className="doc-overlay">
-                        <button className="doc-appt-btn">Book Appointment</button>
+                        {/* ── Opens modal ── */}
+                        <button className="doc-appt-btn" onClick={openModal}>
+                          Book Appointment
+                        </button>
                       </div>
                     </div>
                     <div className='doc-specialization'>
@@ -519,7 +572,7 @@ function HomePage() {
         </section>
 
         {/* ═══ FOOTER ═══ */}
-        <footer className='footer-homepage'><Footer /></footer>
+        <footer className='footer-homepage'><Footer onBookAppointment={openModal} /></footer>
       </main>
     </>
   );

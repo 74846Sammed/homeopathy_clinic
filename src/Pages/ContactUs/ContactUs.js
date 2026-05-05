@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../SharedComponents/Header/Header';
 import Footer from '../../SharedComponents/Footer/Footer';
+import BookAppointment from '../BookAppointmentModel/BookAppointmentModel';
 import './ContactUs.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 
 function ContactUs() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal  = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [formValues, setFormValues] = useState({
     name: '',
     phone: '',
@@ -38,9 +47,13 @@ function ContactUs() {
     setFormValues({ name: '', phone: '', email: '', subject: '', message: '' });
     setErrors({});
   };
+
   return (
     <div>
-      <Header />
+      {/* ── Modal ── */}
+      <BookAppointment isOpen={isModalOpen} onClose={closeModal} />
+
+      <Header onBookAppointment={openModal} />
 
       <div className="contact-hero">
         <div className="contact-hero-overlay"></div>
@@ -57,28 +70,53 @@ function ContactUs() {
               <div className="contact-card-title">Send us a message</div>
               <form className="row g-3" onSubmit={handleSubmit} noValidate>
                 <div className="col-md-6">
-                  <TextField fullWidth label="Full Name" variant="outlined" size="medium" className="contact-input" value={formValues.name} onChange={handleChange('name')} error={Boolean(errors.name)} helperText={errors.name}
+                  <TextField
+                    fullWidth label="Full Name" variant="outlined" size="medium"
+                    className="contact-input" value={formValues.name}
+                    onChange={handleChange('name')} error={Boolean(errors.name)}
+                    helperText={errors.name}
                   />
                 </div>
                 <div className="col-md-6">
-                  <TextField fullWidth label="Phone Number" variant="outlined" size="medium" className="contact-input" value={formValues.phone} onChange={handleChange('phone')} error={Boolean(errors.phone)} helperText={errors.phone}
+                  <TextField
+                    fullWidth label="Phone Number" variant="outlined" size="medium"
+                    className="contact-input" value={formValues.phone}
+                    onChange={handleChange('phone')} error={Boolean(errors.phone)}
+                    helperText={errors.phone}
                   />
                 </div>
                 <div className="col-md-12">
-                  <TextField fullWidth label="Email" type="email" variant="outlined" size="medium" className="contact-input" value={formValues.email} onChange={handleChange('email')} error={Boolean(errors.email)} helperText={errors.email}
+                  <TextField
+                    fullWidth label="Email" type="email" variant="outlined" size="medium"
+                    className="contact-input" value={formValues.email}
+                    onChange={handleChange('email')} error={Boolean(errors.email)}
+                    helperText={errors.email}
                   />
                 </div>
                 <div className="col-md-12">
-                  <TextField fullWidth label="Subject" variant="outlined" size="medium" className="contact-input" value={formValues.subject} onChange={handleChange('subject')} error={Boolean(errors.subject)} helperText={errors.subject}
+                  <TextField
+                    fullWidth label="Subject" variant="outlined" size="medium"
+                    className="contact-input" value={formValues.subject}
+                    onChange={handleChange('subject')} error={Boolean(errors.subject)}
+                    helperText={errors.subject}
                   />
                 </div>
                 <div className="col-md-12">
-                  <TextField fullWidth label="Your Message" multiline minRows={4} variant="outlined" size="medium" className="contact-input" value={formValues.message} onChange={handleChange('message')} error={Boolean(errors.message)} helperText={errors.message}
+                  <TextField
+                    fullWidth label="Your Message" multiline minRows={4} variant="outlined"
+                    size="medium" className="contact-input" value={formValues.message}
+                    onChange={handleChange('message')} error={Boolean(errors.message)}
+                    helperText={errors.message}
                   />
                 </div>
                 <div className="col-12 d-flex gap-2 flex-wrap">
-                  <Button type="submit" variant="contained" className="primary-btn">Send Message</Button>
-                  <Button variant="outlined" className="outline-btn">Book An Appointment</Button>
+                  <Button type="submit" variant="contained" className="primary-btn">
+                    Send Message
+                  </Button>
+                  {/* ── Opens modal ── */}
+                  <Button variant="outlined" className="outline-btn" onClick={openModal}>
+                    Book An Appointment
+                  </Button>
                 </div>
               </form>
             </div>
@@ -108,7 +146,9 @@ function ContactUs() {
                 <div className="contact-icon"><FaMapMarkerAlt /></div>
                 <div>
                   <div className="contact-info-label">Clinic Address</div>
-                  <div className="contact-info-value">Mark Homeopathy, 2nd Floor, Wellness Plaza, MG Road, Pune, MH 411001</div>
+                  <div className="contact-info-value">
+                    Mark Homeopathy, 2nd Floor, Wellness Plaza, MG Road, Pune, MH 411001
+                  </div>
                 </div>
               </div>
 
@@ -117,14 +157,23 @@ function ContactUs() {
               </a>
 
               <div className="map-container mt-3">
-                <iframe title="Clinic Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.829826971393!2d73.856743!3d18.536177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c06c2dcb1f1b%3A0x6a1d0cbf9e2b2e2f!2sMG%20Road!5e0!3m2!1sen!2sin!4v1700000000000" width="100%" height="230" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                <iframe
+                  title="Clinic Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.829826971393!2d73.856743!3d18.536177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c06c2dcb1f1b%3A0x6a1d0cbf9e2b2e2f!2sMG%20Road!5e0!3m2!1sen!2sin!4v1700000000000"
+                  width="100%"
+                  height="230"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <Footer />
+      <Footer onBookAppointment={openModal} />
     </div>
   );
 }

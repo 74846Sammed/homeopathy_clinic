@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Header from '../../SharedComponents/Header/Header';
 import Footer from '../../SharedComponents/Footer/Footer';
+import BookAppointment from '../BookAppointmentModel/BookAppointmentModel';
 import './AboutUs.css';
 
 import healing from '../../Assets/Images/study-time.png';
@@ -85,6 +86,7 @@ function useInView(threshold = 0.15) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
@@ -159,9 +161,9 @@ const StatsStrip = () => {
   const [ref, visible] = useInView(0.2);
   const stats = [
     { label: 'Years of Experience', value: 15, suffix: '+' },
-    { label: 'Patients Treated', value: 10000, suffix: '+' },
-    { label: 'Success Rate', value: 95, suffix: '%' },
-    { label: 'Conditions Treated', value: 200, suffix: '+' },
+    { label: 'Patients Treated',    value: 10000, suffix: '+' },
+    { label: 'Success Rate',        value: 95, suffix: '%' },
+    { label: 'Conditions Treated',  value: 200, suffix: '+' },
   ];
 
   return (
@@ -223,7 +225,7 @@ const VisionMission = () => {
 };
 
 /* ─── Hero Banner ─── */
-const HeroBanner = () => {
+const HeroBanner = ({ onBookAppointment }) => {
   const [ref, visible] = useInView(0.1);
   return (
     <section ref={ref} className={`hero-banner ${visible ? 'hero-banner--visible' : ''}`} aria-label="About us hero">
@@ -241,6 +243,10 @@ const HeroBanner = () => {
         <p className="hero-banner__subtitle">
           Where ancient wisdom meets modern science to restore balance, vitality, and true wellness.
         </p>
+        {/* ── CTA button in hero ── */}
+        <button className="hero-banner__cta" onClick={onBookAppointment}>
+          Book an Appointment
+        </button>
       </div>
       <div className="hero-banner__wave" aria-hidden="true">
         <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -252,36 +258,47 @@ const HeroBanner = () => {
 };
 
 /* ─── Page ─── */
-const AboutUs = () => (
-  <>
-    <Header />
-    <main className="about-us-main" role="main">
-      <HeroBanner />
+const AboutUs = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal  = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
-      <section className="features-section" aria-labelledby="features-heading">
-        <div className="features-section__container">
-          <div className="section-header">
-            <span className="section-header__tag">Why Choose Us</span>
-            <h2 id="features-heading" className="section-header__title">
-              What Makes Us Unique
-            </h2>
-            <p className="section-header__sub">
-              Eight pillars of care that set Dr. Basil's Homeo Hospital apart.
-            </p>
-          </div>
-          <div className="features-grid" role="list" aria-label="Our unique features">
-            {features.map((f, i) => (
-              <FeatureCard key={f.id} feature={f} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
+  return (
+    <>
+      {/* ── Modal ── */}
+      <BookAppointment isOpen={isModalOpen} onClose={closeModal} />
 
-      <StatsStrip />
-      <VisionMission />
-    </main>
-    <Footer />
-  </>
-);
+      <Header onBookAppointment={openModal} />
+
+      <main className="about-us-main" role="main">
+        <HeroBanner onBookAppointment={openModal} />
+
+        <section className="features-section" aria-labelledby="features-heading">
+          <div className="features-section__container">
+            <div className="section-header">
+              <span className="section-header__tag">Why Choose Us</span>
+              <h2 id="features-heading" className="section-header__title">
+                What Makes Us Unique
+              </h2>
+              <p className="section-header__sub">
+                Eight pillars of care that set Dr. Basil's Homeo Hospital apart.
+              </p>
+            </div>
+            <div className="features-grid" role="list" aria-label="Our unique features">
+              {features.map((f, i) => (
+                <FeatureCard key={f.id} feature={f} index={i} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <StatsStrip />
+        <VisionMission />
+      </main>
+
+      <Footer onBookAppointment={openModal} />
+    </>
+  );
+};
 
 export default AboutUs;
